@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/html-content-style.css" />
+  <link href="styles/prism-shades-of-purple.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles/auth-forms.css">
+  <title>HTML-guide</title>
+</head>
+
+<body>
+  <!-- Хедер с навигационной панелью -->
+  <header>
+    <div class="logo-container">
+      <a href="#" class="navbar-button">
+        <img src="img/logo.jpg" alt="website-logo" class="test-icon" />
+        <span><a href="index.html" class="website-name navbar-button">STUDY GUIDE</a></span>
+      </a>
+    </div>
+    <div class="controls">
+      <div class="header-icons">
+        <div class="theme-switcher-drop">
+          <button class="theme-switcher" src="img/theme-switcher.svg"></button>
+          <div class="dropdown-content">
+            <a href="#" onclick="switchWhite()">Светлая</a>
+            <a href="#"onclick="switchBlack()">Тёмная</a>
+          </div>
+        </div>
+        <div class="profile">
+          <a href="#" onclick="showRegForm('block')">Зарегистрироваться</a>
+          <a href="#" onclick="showLogForm('block')">Войти</a>
+          <img src="img/profile.svg" alt="">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="log"> </section>
+  <section class="reg"> </section>
+
+  <aside>
+    <div class="sidebar">
+      <section class="nav-panel">
+        <h4>Урок</h4>
+        <a href="">Название урока</a>
+        <h4>Навигация по уроку</h4>
+        <ul id="aside-themes">
+        </ul>
+      </section>
+    </div>
+  </aside>
+  <!-- Основная секция страницы -->
+  <main>
+    <section class="guide">
+      <section class="content-part">
+        <section class="technology-info">
+          <h4>Название темы</h4>
+          <p><a href="html-page.html">HTML</a>/<a href="">Название темы</a></p>
+        </section>
+        <button class="prev" onclick="prevTheme()">&#x203A;</button>
+          <button class="next" onclick="nextTheme()">&#x2039;</button>
+        <section class="content-text" id="content-text">
+          
+        </section>
+        <section class="test">
+          <h1>Введение в HTML</h1>
+          <!--Первый вопрос-->
+        <div class="question">
+          <p>Вопрос 1</p>
+          <p>Что такое HTML?</p>
+      </div>
+      <form class="test-form">
+        <label>
+          <input type="radio" name="answer1" value="option1" data-correct="true">
+          Язык разметки, используемый для создания веб-страниц <!--ПРАВИЛЬНЫЙ-->
+      </label>
+      <br>
+      <label>
+          <input type="radio" name="answer1" value="option2">
+          Язык иерархических правил, используемый для представления внешнего вида документа
+      </label>
+      <br>
+      <label>
+          <input type="radio" name="answer1" value="option3">
+          Язык программирования, который позволяет создавать динамически обновляемый контент
+      </label>
+      
+
+      <!--Второй вопрос-->
+      <div class="question">
+          <p>Вопрос 2</p>
+          <p>Какие основные концепции есть в HTML?</p>
+      </div>
+
+      <label>
+        <input type="radio" name="answer2" value="option1" data-correct="true">
+        Элементы, теги, атрибуты  <!--ПРАВИЛЬНЫЙ-->
+      </label>
+      <br>
+      <label>
+          <input type="radio" name="answer2" value="option2">
+          Набор логических предикатов
+      </label>
+      <br>
+      <label>
+          <input type="radio" name="answer2" value="option3">
+          Наследование
+      </label>
+      <br>
+        <label>
+        <input type="radio" name="answer2" value="option4">
+        Полиморфизм, атрибуты
+        </label>
+      
+
+
+      <h1>Создание и форматирование простейшего HTML-документа</h1>
+
+      <!--Третий вопрос-->
+      <div class="question">
+          <p>Вопрос 3</p>
+          <p>Из каких нескольких основных частей состоит HTML?<br>
+          <i style="color: gray;">Выбрать только вариант который полностью содерижт все части</i></p>
+      </div>
+      
+          <label>
+          <input type="radio" name="answer3">
+          &lt;frame&gt; , &lt;css&gt; , &lt;body&gt;
+      </label>
+      <br>
+      <label>
+          <input type="radio" name="answer3">
+          &lt;html&gt; , &lt;body&gt; , &lt;legs&gt;
+      </label>
+      <br>
+      <label>
+          <input type="radio" name="answer3" data-correct="true">
+          &lt;html&gt; , &lt;head&gt; , &lt;body&gt; <!--ПРАВИЛЬНЫЙ-->
+      </label>
+      
+
+
+      <h1>Организация системы навигации сайта</h1>
+
+      <!--Четверый вопрос-->
+      <div class="question">
+          <p>Вопрос 4</p>
+          <p>Как объявляется нумерованный список?</p>
+      </div>
+      
+          <label>
+              <input type="radio" name="answer4">
+              С помощью тега &lt;ul&gt; &lt;/ul&gt; 
+          </label>
+          <br>
+          <label>
+              <input type="radio" name="answer4" data-correct="true">
+              С помощью тега &lt;ol&gt; &lt;/ol&gt; <!--ПРАВИЛЬНЫЙ-->
+          </label>
+          <br>
+          <label>
+              <input type="radio" name="answer4">
+              С помощью тега &lt;div&gt; &lt;/div&gt; 
+          </label>
+          <br>
+          <label>
+              <input type="radio" name="answer4">
+              С помощью тега &lt;a&gt; 
+          </label>
+      
+      
+
+          <!--Пятый вопрос-->
+      <div class="question">
+        <p>Вопрос 5</p>
+        <p>Какие ссылки существуют в HTML?</p>
+    </div>
+
+
+        <label>
+            <input type="radio" name="answer5" data-correct="true">
+            Внешние, внутренние, внутрестраничные
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="answer5">
+            Наследуемые, внутренние
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="answer5">
+            Сериализуемые, внешние, внутрестраничные
+        </label>
+      
+
+
+        <!--Шестой вопрос-->
+      <div class="question">
+        <p>Вопрос 6</p>
+        <p>Какие &lt;Теги&gt; относятся к непарным в HTML?</p>
+    </div>
+
+    <label>
+        <input type="radio" name="answer6" data-correct="true">
+        &lt;hr&gt;, &lt;br&gt;, &lt;img&gt;
+    </label>
+    <br>
+        <label>
+            <input type="radio" name="answer6">
+            &lt;div&gt;, &lt;p&gt;
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="answer6">
+            &lt;body&gt;, &lt;head&gt;
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="answer6">
+            &lt;img&gt;, &lt;style&gt;
+        </label>
+      
+
+      <!--Седьмой вопрос-->
+      <div class="question">
+          <p>Вопрос 7</p>
+          <p>Сколько версий HTML существует на данный момент?</p>
+      </div>
+
+      <label>
+        <input type="radio" name="answer7" data-correct="true">
+        5
+    </label>
+    <br>
+    <label>
+        <input type="radio" name="answer7">
+        6
+    </label>
+    <br>
+    <label>
+        <input type="radio" name="answer7">
+        4
+    </label>
+    <br>
+    <label>
+        <input type="radio" name="answer7">
+        7
+    </label> 
+
+      <!--Восьмой вопрос-->
+      <div class="question">
+          <p>Вопрос 8</p>
+          <p>При помощи каких тегов можно добавить аудио и видео файлы на страницу HTML?</p>
+      </div>
+      
+          <label>
+              <input type="radio" name="answer8" data-correct="true">
+              С помощью тегов &lt;audio&gt; и &lt;video&gt; <!--ПРАВИЛЬНЫЙ-->
+          </label>
+          <br>
+          <label>
+              <input type="radio" name="answer8">
+              С помощью тегов: &lt;sound&gt; и &lt;media&gt; 
+          </label>
+          <br>
+          <label>
+              <input type="radio" name="answer8">
+              С помощью тега &lt;source&gt; и &lt;form&gt; 
+          </label>
+      
+
+      <!--Девятый вопрос-->
+      <div class="question">
+          <p>Вопрос 9</p>
+          <p>Какой тег создает ссылку на странице HTML?</p>
+      </div>
+     
+          <label>
+              <input type="radio" name="answer9">
+              &lt;b&gt;
+          </label>
+          <br>
+          <label>
+              <input type="radio" name="answer9" data-correct="true">
+              &lt;a&gt; <!--ПРАВИЛЬНЫЙ-->
+          </label>
+          <br>
+          <label>
+              <input type="radio" name="answer9">
+              &lt;c&gt;
+          </label>
+      
+
+      <!--Десятый вопрос-->
+      <div class="question">
+          <p>Вопрос 10</p>
+          <p>Что такое фрейм?</p>
+      </div>
+      
+          <label>
+              <input type="radio" name="answer10">
+              Это принцип, согласно которому внутреннее устройство сущностей нужно объединять в специальной оболочке и скрывать от вмешательств извне.
+          </label>
+          <br>
+          <label>
+              <input type="radio" name="answer10" data-correct="true">
+              Это самостоятельный документ, который отображается в отдельном окне браузера и представляет собой полностью законченную HTML-страницу. <!--ПРАВИЛЬНЫЙ-->
+          </label>
+          <br>
+          <label>
+              <input type="radio" name="answer10">
+              Формальный язык декодирования и описания внешнего вида документа.
+          </label>
+      </form>
+      <button class="submit-button" onclick="checkAnswers()">Проверить ответы</button>
+      <section class="results"></section>
+
+        </section>
+      </section>
+    </section>
+
+    
+  </main>
+  <!-- Интерактивная часть -->
+  <section>
+    
+  </section>
+  <!-- Обычный футтер (без информации про колледж и тп) -->
+  <footer>
+    <div class="footer-info item">
+      <h4>STUDY-GUIDE</h4>
+      <p>Основные разделы | О сайте</p>
+      <hr />
+      <p>Год создания &copy; 2024</p>
+      <p>Группа разработчиков</p>
+      <p>Все права защищены</p>
+    </div>
+    <section class="about-site item">
+      <h4>Для чего нужен наш справочник?</h4>
+      <p>
+        Справочник HTML, CSS и JavaScript - ваш надежный источник знаний о
+        веб-разработке. Мы стремимся предоставить вам обширную базу знаний,
+        необходимую для создания красивых и функциональных веб-приложений.
+        Наша цель - сделать процесс изучения и использования технологий
+        веб-разработки максимально простым и доступным.
+      </p>
+    </section>
+  </footer>
+  <!-- Активные скрипты -->
+  <!-- <script src="js/server.js"></script> -->
+  <script src="js/prism.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/content.js"></script>
+  <script src="js/authorization.js"></script>
+
+  <script src="js/tests.js"></script>
+
+
+
+</body>
+
+</html>

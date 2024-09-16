@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/сss-content-style.css" />
+
+  <link rel="stylesheet" href="styles/auth-forms.css">
+  <title>JS-guide</title>
+</head>
+
+<body>
+  <!-- Хедер с навигационной панелью -->
+  <header>
+    <div class="logo-container">
+      <a href="#" class="navbar-button">
+        <img src="img/logo.jpg" alt="website-logo" class="test-icon" />
+        <span><a href="index.html" class="website-name navbar-button">STUDY GUIDE</a></span>
+      </a>
+    </div>
+    <div class="controls">
+      <div class="header-icons">
+        <div class="theme-switcher-drop">
+          <button class="theme-switcher" src="img/theme-switcher.svg"></button>
+          <div class="dropdown-content">
+            <a href="#" onclick="switchWhite()">Светлая</a>
+            <a href="#"onclick="switchBlack()">Тёмная</a>
+          </div>
+        </div>
+        <div class="profile">
+          <a href="#" onclick="showRegForm('block')">Зарегистрироваться</a>
+          <a href="#" onclick="showLogForm('block')">Войти</a>
+          <img src="img/profile.svg" alt="">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="log"> </section>
+  <section class="reg"> </section>
+
+  <aside></aside>
+  <!-- Основная секция страницы -->
+  <main>
+    <section class="guide">
+      <div class="sidebar">
+        <section class="nav-panel">
+          <h4>Урок</h4>
+          <a href="">Название урока</a>
+          <h4>Навигация по уроку</h4>
+          <ul>
+            <li><a href="">Название подтемы</a></li>
+            <li><a href="">Название подтемы</a></li>
+            <li><a href="">Название подтемы</a></li>
+            <li><a href="">Название подтемы</a></li>
+            <li><a href="">Название подтемы</a></li>
+            <!-- Лишние подтемы удалить -->
+            <a href="">Итоги</a>
+          </ul>
+        </section>
+      </div>
+      <section class="content-part">
+        <section class="technology-info">
+          <h4>Название темы</h4>
+          <p><a href="js-page.html">JS</a>/<a href="">Название темы</a></p>
+        </section>
+        <section class="content-text">
+          <h4>Название подтемы</h4>
+          <p>Текст подтемы</p>
+          <h4>Название подтемы</h4>
+          <p>Текст подтемы</p>
+          <h4>Название подтемы</h4>
+          <p>Текст подтемы</p>
+          <h4>Название подтемы</h4>
+          <p>Текст подтемы</p>
+          <h4>Название подтемы</h4>
+          <p>Текст подтемы</p>
+          <h4>Итоги</h4>
+          <p>Обобщение темы</p>
+        </section>
+        <section class="test">
+
+          <!-- Первый вопрос -->
+<div class="question">
+  <p>Вопрос 1</p>
+  <p>Что такое JavaScript?</p>
+</div>
+<form class="test-form">
+  <label>
+      <input type="radio" name="answer1" value="option1">
+      Язык разметки для создания веб-страниц
+  </label>
+  <br>
+  <label>
+      <input type="radio" name="answer1" value="option2">
+      Язык программирования для создания статических сайтов
+  </label>
+  <br>
+  <label>
+      <input type="radio" name="answer1" value="option3"  data-correct="true">
+      Язык программирования для создания интерактивных веб-страниц <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
+  </label>
+</form>
+
+<!-- Второй вопрос -->
+<div class="question">
+  <p>Вопрос 2</p>
+  <p>Какой ключевой слово используется для объявления переменных в JavaScript?</p>
+</div>
+<form class="test-form">
+  <label>
+      <input type="radio" name="answer2" value="option1">
+      var
+  </label>
+  <br>
+  <label>
+      <input type="radio" name="answer2" value="option2">
+      let
+  </label>
+  <br>
+  <label>
+      <input type="radio" name="answer2" value="option3"  data-correct="true">
+      all <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
+  </label>
+</form>
+
+<!-- Третий вопрос -->
+<div class="question">
+  <p>Вопрос 3</p>
+  <p>Какой из приведённых типов данных не относится к примитивным в JavaScript?</p>
+</div>
+<form class="test-form">
+  <label>
+      <input type="radio" name="answer3" value="option1">
+      string
+  </label>
+  <br>
+  <label>
+      <input type="radio" name="answer3" value="option2">
+      object
+  </label>
+  <br>
+  <label>
+      <input type="radio" name="answer3" value="option3"  data-correct="true">
+      number <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
+  </label>
+</form>
+
+<!-- Четвёртый вопрос -->
+<div class="question">
+  <p>Вопрос 4</p>
+  <p>Какой метод используется для добавления элемента в конец массива в JavaScript?</p>
+</div>
+<form class="test-form">
+  <label>
+      <input type="radio" name="answer4" value="option1">
+      append()
+  </label>
+  <br>
+  <label>
+      <input type="radio" name="answer4" value="option2"  data-correct="true">
+      push() <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
+  </label>
+  <br>
+  <label>
+      <input type="radio" name="answer4" value="option3">
+      join()
+  </label>
+</form>
+
+<!-- Пятый вопрос -->
+<div class="question">
+  <p>Вопрос 5</p>
+  <p>Что делает оператор === в JavaScript?</p>
+</div>
+<form class="test-form">
+  <label>
+      <input type="radio" name="answer5" value="option1">
+      Проверяет равенство по значению, но не по типу
+  </label>
+  <br>
+  <label>
+      <input type="radio" name="answer5" value="option2">
+      Проверяет равенство по типу, но не по значению
+  </label>
+  <br>
+  <label>
+      <input type="radio" name="answer5" value="option3"  data-correct="true">
+      Строгая проверка равенства по типу и значению <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
+  </label>
+</form>
+
+<!-- Шестой вопрос -->
+<div class="question">
+  <p>Вопрос 6</p>
+  <p>Какая функция используется для вывода информации в консоль в JavaScript?</p>
+</div>
+<form class="test-form">
+  <label>
+      <input type="radio" name="answer6" value="option1"  data-correct="true">
+      console.log() <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
+  </label>
+  <br>
+  <label>
+      <input type="radio" name="answer6" value="option2">
+      print()
+  </label>
+  <br>
+  <label>
+      <input type="radio" name="answer6" value="option3">
+      echo()
+  </label>
+</form>
+
+<!-- Седьмой вопрос -->
+<div class="question">
+  <p>Вопрос 7</p>
+  <p>Какой оператор используется для строгого неравенства в JavaScript?</p>
+</div>
+<form class="test-form">
+  <label>
+      <input type="radio" name="answer7" value="option1"  data-correct="true">
+      !== <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
+  </label>
+  <br>
+  <label>
+      <input type="radio" name="answer7" value="option2">
+      !=
+  </label>
+  <br>
+  <label>
+      <input type="radio" name="answer7" value="option3">
+      !===
+  </label>
+</form>
+
+<!-- Восьмой вопрос -->
+<div class="question">
+  <p>Вопрос 8</p>
+  <p>Какой метод используется для удаления последнего элемента из массива в JavaScript?</p>
+</div>
+<form class="test-form">
+  <label>
+      <input type="radio" name="answer8" value="option1">
+      shift()
+  </label>
+  <br>
+  <label>
+      <input type="radio" name="answer8" value="option2"  data-correct="true">
+      pop() <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
+  </label>
+  <br>
+  <label>
+      <input type="radio" name="answer8" value="option3">
+      slice()
+  </label>
+</form>
+
+<!-- Девятый вопрос -->
+<div class="question">
+  <p>Вопрос 9</p>
+  <p>Какой метод используется для присоединения элементов массива в строку в JavaScript?</p>
+</div>
+<form class="test-form">
+  <label>
+      <input type="radio" name="answer9" value="option1"  data-correct="true">
+      join() <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
+  </label>
+  <br>
+  <label>
+      <input type="radio" name="answer9" value="option2">
+      concat()
+  </label>
+  <br>
+  <label>
+      <input type="radio" name="answer9" value="option3">
+      map()
+  </label>
+</form>
+
+<!-- Десятый вопрос -->
+<div class="question">
+  <p>Вопрос 10</p>
+  <p>Что делает оператор typeof в JavaScript?</p>
+</div>
+<form class="test-form">
+  <label>
+      <input type="radio" name="answer10" value="option1">
+      Проверяет, является ли значение null
+  </label>
+  <br>
+  <label>
+      <input type="radio" name="answer10" value="option2"  data-correct="true">
+      Возвращает тип данных переменной <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
+  </label>
+  <br>
+  <label>
+      <input type="radio" name="answer10" value="option3">
+      Проверяет, является ли значение undefined
+  </label>
+</form>
+<button class="submit-button-js" onclick="checkAnswers()">Проверить ответы</button>
+<section class="results"></section>
+
+        </section>
+      </section>
+    </section>
+  </main>
+  <!-- Интерактивная часть -->
+  <section></section>
+  <!-- Обычный футтер (без информации про колледж и тп) -->
+  <footer>
+    <div class="footer-info item">
+      <h4>STUDY-GUIDE</h4>
+      <p>Основные разделы | О сайте</p>
+      <hr />
+      <p>Год создания &copy; 2024</p>
+      <p>Группа разработчиков</p>
+      <p>Все права защищены</p>
+    </div>
+    <section class="about-site item">
+      <h4>Для чего нужен наш справочник?</h4>
+      <p>
+        Справочник HTML, CSS и JavaScript - ваш надежный источник знаний о
+        веб-разработке. Мы стремимся предоставить вам обширную базу знаний,
+        необходимую для создания красивых и функциональных веб-приложений.
+        Наша цель - сделать процесс изучения и использования технологий
+        веб-разработки максимально простым и доступным.
+      </p>
+    </section>
+  </footer>
+  <!-- Активные скрипты -->
+
+  <script src="js/script.js"></script>
+  <script src="js/authorization.js"></script>
+  <script src="js/tests.js"></script>
+</body>
+
+</html>
