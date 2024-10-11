@@ -1,332 +1,370 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/сss-content-style.css" />
+    <link rel="stylesheet" href="styles/auth-forms.css" />
+    <link href="styles/prism-shades-of-purple.css" rel="stylesheet" />
+    <title>CSS-guide</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles/сss-content-style.css" />
-  <link rel="stylesheet" href="styles/auth-forms.css">
-  <title>CSS-guide</title>
-</head>
-
-<body>
-  <!-- Хедер с навигационной панелью -->
-  <header>
-    <div class="logo-container">
-      <a href="#" class="navbar-button">
-        <img src="img/logo.jpg" alt="website-logo" class="test-icon" />
-        <span><a href="index.html" class="website-name navbar-button">STUDY GUIDE</a></span>
-      </a>
-    </div>
-    <div class="controls">
-      <div class="header-icons">
-        <div class="theme-switcher-drop">
-          <button class="theme-switcher" src="img/theme-switcher.svg"></button>
-          <div class="dropdown-content">
-            <a href="#" onclick="switchWhite()">Светлая</a>
-            <a href="#"onclick="switchBlack()">Тёмная</a>
+  <body>
+    <!-- Хедер с навигационной панелью -->
+    <header>
+      <div class="logo-container">
+        <a href="#" class="navbar-button">
+          <img src="img/logo.jpg" alt="website-logo" class="test-icon" />
+          <span
+            ><a href="index.html" class="website-name navbar-button"
+              >STUDY GUIDE</a
+            ></span
+          >
+        </a>
+      </div>
+      <div class="controls">
+        <div class="header-icons">
+          <div class="theme-switcher-drop">
+            <button
+              class="theme-switcher"
+              src="img/theme-switcher.svg"
+            ></button>
+            <div class="dropdown-content">
+              <a href="#" onclick="switchWhite()">Светлая</a>
+              <a href="#" onclick="switchBlack()">Тёмная</a>
+            </div>
+          </div>
+          <div class="profile">
+            <a href="#" onclick="showRegForm('block')">Зарегистрироваться</a>
+            <a href="#" onclick="showLogForm('block')">Войти</a>
+            <img src="img/profile.svg" alt="" />
           </div>
         </div>
-        <div class="profile">
-          <a href="#" onclick="showRegForm('block')">Зарегистрироваться</a>
-          <a href="#" onclick="showLogForm('block')">Войти</a>
-          <img src="img/profile.svg" alt="">
-        </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <section class="log"> </section>
-  <section class="reg"> </section>
+    <section class="log"></section>
+    <section class="reg"></section>
 
-  <!-- Панель помогающая в навигации на странице -->
-  <aside>
-    <div class="sidebar">
-      <section class="nav-panel">
-        <h4>Урок</h4>
-        <a href="">Название урока</a>
-        <h4>Навигация по уроку</h4>
-        <ul id="aside-themes">
-        </ul>
+    <!-- Панель помогающая в навигации на странице -->
+    <aside></aside>
+    <!-- Основная секция страницы -->
+    <main>
+      <section class="guide">
+        <section class="nav-panel">
+          <section class="nav-panel-content">
+          <h4>Урок</h4>
+          <a href="">Название урока</a>
+          <h4>Навигация по уроку</h4>
+          <ul id="aside-themes"></ul>
+        </section>
+        </section>
+        <section class="main-content">
+          <button class="prev" onclick="prevTheme('css-themes')">
+            &#x203A;
+          </button>
+          <button class="next" onclick="nextTheme('css-themes')">
+            &#x2039;
+          </button>
+          <section class="content-part">
+            <section class="content-text" id="content-text"></section>
+            <section class="test">
+              <!-- Первый вопрос -->
+              <div class="question">
+                <p>Вопрос 1</p>
+                <p>Что такое CSS?</p>
+              </div>
+              <form class="test-form">
+                <label>
+                  <input
+                    type="radio"
+                    name="answer1"
+                    value="option1"
+                    data-correct="true"
+                  />
+                  Язык стилей для описания внешнего вида документов, написанных
+                  с использованием разметки HTML
+                  <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer1" value="option2" />
+                  Язык программирования для создания интерактивных веб-страниц
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer1" value="option3" />
+                  Язык гипертекстовой разметки для создания веб-страниц
+                </label>
+              </form>
+
+              <div class="question">
+                <p>Вопрос 2</p>
+                <p>Какие способы подключения CSS существуют?</p>
+              </div>
+              <form class="test-form">
+                <label>
+                  <input
+                    type="radio"
+                    name="answer1"
+                    value="option1"
+                    data-correct="true"
+                  />
+                  Встроенный, внутренний, внешний стили
+                  <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer1" value="option2" />
+                  Никаких
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer1" value="option3" />
+                  Только встроенный и внутренний стили
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer1" value="option4" />
+                  Inline-скрипт
+                </label>
+              </form>
+
+              <!-- Третий вопрос -->
+              <div class="question">
+                <p>Вопрос 3</p>
+                <p>
+                  Какой тег используется для подключения внешнего CSS файла?
+                </p>
+              </div>
+              <form class="test-form">
+                <label>
+                  <input type="radio" name="answer" />
+                  &lt;script&gt;
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer" data-correct="true" />
+                  &lt;link&gt;
+                  <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer" />
+                  &lt;style&gt;
+                </label>
+              </form>
+
+              <!-- Четвертый вопрос -->
+              <div class="question">
+                <p>Вопрос 4</p>
+                <p>Что такое селектор в CSS?</p>
+              </div>
+              <form class="test-form">
+                <label>
+                  <input type="radio" name="answer" data-correct="true" />
+                  Элемент, к которому применяются CSS-стили
+                  <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer" />
+                  Атрибут HTML тега
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer" />
+                  Стиль элемента
+                </label>
+              </form>
+
+              <!-- Пятый вопрос -->
+              <div class="question">
+                <p>Вопрос 5</p>
+                <p>Как обозначаются классы в CSS?</p>
+              </div>
+              <form class="test-form">
+                <label>
+                  <input type="radio" name="answer" />
+                  #
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer" />
+                  .
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer" data-correct="true" />
+                  .class
+                  <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
+                </label>
+              </form>
+
+              <!-- Шестой вопрос -->
+              <div class="question">
+                <p>Вопрос 6</p>
+                <p>Как обозначаются идентификаторы (ID) в CSS?</p>
+              </div>
+              <form class="test-form">
+                <label>
+                  <input type="radio" name="answer" />
+                  #
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer" />
+                  .id
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer" data-correct="true" />
+                  #id
+                  <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
+                </label>
+              </form>
+
+              <!-- Седьмой вопрос -->
+              <div class="question">
+                <p>Вопрос 7</p>
+                <p>
+                  Какое свойство CSS используется для изменения цвета текста?
+                </p>
+              </div>
+              <form class="test-form">
+                <label>
+                  <input type="radio" name="answer" />
+                  font-size
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer" data-correct="true" />
+                  color
+                  <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer" />
+                  background-color
+                </label>
+              </form>
+
+              <!-- Восьмой вопрос -->
+              <div class="question">
+                <p>Вопрос 8</p>
+                <p>Что такое псевдокласс в CSS?</p>
+              </div>
+              <form class="test-form">
+                <label>
+                  <input type="radio" name="answer" data-correct="true" />
+                  Специальное состояние элемента
+                  <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer" />
+                  Класс, который создается с помощью JavaScript
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer" />
+                  Класс, применяемый к дочерним элементам
+                </label>
+              </form>
+
+              <!-- Девятый вопрос -->
+              <div class="question">
+                <p>Вопрос 9</p>
+                <p>
+                  Какое свойство CSS используется для добавления отступов внутри
+                  элемента?
+                </p>
+              </div>
+              <form class="test-form">
+                <label>
+                  <input type="radio" name="answer" />
+                  margin
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer" data-correct="true" />
+                  padding
+                  <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer" />
+                  border
+                </label>
+              </form>
+
+              <!-- Десятый вопрос -->
+              <div class="question">
+                <p>Вопрос 10</p>
+                <p>
+                  Какое свойство CSS используется для изменения шрифта текста?
+                </p>
+              </div>
+              <form class="test-form">
+                <label>
+                  <input type="radio" name="answer" data-correct="true" />
+                  font-family
+                  <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer" />
+                  text-align
+                </label>
+                <br />
+                <label>
+                  <input type="radio" name="answer" />
+                  font-size
+                </label>
+              </form>
+              <button class="submit-button-css" onclick="checkAnswers()">
+                Проверить ответы
+              </button>
+              <section class="results"></section>
+            </section>
+          </section>
+        </section>
       </section>
-    </div>
-  </aside>
-  <!-- Основная секция страницы -->
-  <main>
-    <section class="guide">
-      <section class="content-part">
-        <section class="technology-info">
-          <h4>Название темы</h4>
-          <p><a href="css-page.html">CSS</a>/<a href="">Название темы</a></p>
-        </section>
-        <section class="content-text" id="content-text">
-
-        </section>
-        <section class="test">
-
-
-          <!-- Первый вопрос -->
-    <div class="question">
-      <p>Вопрос 1</p>
-      <p>Что такое CSS?</p>
-  </div>
-  <form class="test-form">
-      <label>
-          <input type="radio" name="answer1" value="option1" data-correct="true">
-          Язык стилей для описания внешнего вида документов, написанных с использованием разметки HTML <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
-      </label>
-      <br>
-      <label>
-          <input type="radio" name="answer1" value="option2">
-          Язык программирования для создания интерактивных веб-страниц
-      </label>
-      <br>
-      <label>
-          <input type="radio" name="answer1" value="option3">
-          Язык гипертекстовой разметки для создания веб-страниц
-      </label>
-  </form>
-
-
-  <div class="question">
-    <p>Вопрос 2</p>
-    <p>Какие способы подключения CSS существуют?</p>
-  </div>
-  <form class="test-form">
-    <label>
-      <input type="radio" name="answer1" value="option1" data-correct="true">
-      Встроенный, внутренний, внешний стили <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
-    </label>
-    <br>
-    <label>
-      <input type="radio" name="answer1" value="option2">
-      Никаких
-    </label>
-    <br>
-    <label>
-      <input type="radio" name="answer1" value="option3">
-      Только встроенный и внутренний стили
-    </label>
-    <br>
-    <label>
-      <input type="radio" name="answer1" value="option4">
-      Inline-скрипт
-    </label>
-  </form>
-
-
-  <!-- Третий вопрос -->
-  <div class="question">
-      <p>Вопрос 3</p>
-      <p>Какой тег используется для подключения внешнего CSS файла?</p>
-  </div>
-  <form class="test-form">
-      <label>
-          <input type="radio" name="answer">
-          &lt;script&gt;
-      </label>
-      <br>
-      <label>
-          <input type="radio" name="answer" data-correct="true">
-          &lt;link&gt; <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
-      </label>
-      <br>
-      <label>
-          <input type="radio" name="answer">
-          &lt;style&gt;
-      </label>
-  </form>
-
-  <!-- Четвертый вопрос -->
-  <div class="question">
-      <p>Вопрос 4</p>
-      <p>Что такое селектор в CSS?</p>
-  </div>
-  <form class="test-form">
-      <label>
-          <input type="radio" name="answer" data-correct="true">
-          Элемент, к которому применяются CSS-стили <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
-      </label>
-      <br>
-      <label>
-          <input type="radio" name="answer">
-          Атрибут HTML тега
-      </label>
-      <br>
-      <label>
-          <input type="radio" name="answer">
-          Стиль элемента
-      </label>
-  </form>
-
-  <!-- Пятый вопрос -->
-  <div class="question">
-      <p>Вопрос 5</p>
-      <p>Как обозначаются классы в CSS?</p>
-  </div>
-  <form class="test-form">
-      <label>
-          <input type="radio" name="answer">
-          #
-      </label>
-      <br>
-      <label>
-          <input type="radio" name="answer">
-          .
-      </label>
-      <br>
-      <label>
-          <input type="radio" name="answer" data-correct="true">
-          .class <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
-      </label>
-  </form>
-
-  <!-- Шестой вопрос -->
-  <div class="question">
-      <p>Вопрос 6</p>
-      <p>Как обозначаются идентификаторы (ID) в CSS?</p>
-  </div>
-  <form class="test-form">
-      <label>
-          <input type="radio" name="answer">
-          #
-      </label>
-      <br>
-      <label>
-          <input type="radio" name="answer">
-          .id
-      </label>
-      <br>
-      <label>
-          <input type="radio" name="answer" data-correct="true">
-          #id <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
-      </label>
-  </form>
-
-  <!-- Седьмой вопрос -->
-  <div class="question">
-      <p>Вопрос 7</p>
-      <p>Какое свойство CSS используется для изменения цвета текста?</p>
-  </div>
-  <form class="test-form">
-      <label>
-          <input type="radio" name="answer">
-          font-size
-      </label>
-      <br>
-      <label>
-          <input type="radio" name="answer" data-correct="true">
-          color <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
-      </label>
-      <br>
-      <label>
-          <input type="radio" name="answer">
-          background-color
-      </label>
-  </form>
-
-  <!-- Восьмой вопрос -->
-  <div class="question">
-      <p>Вопрос 8</p>
-      <p>Что такое псевдокласс в CSS?</p>
-  </div>
-  <form class="test-form">
-      <label>
-          <input type="radio" name="answer" data-correct="true">
-          Специальное состояние элемента <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
-      </label>
-      <br>
-      <label>
-          <input type="radio" name="answer">
-          Класс, который создается с помощью JavaScript
-      </label>
-      <br>
-      <label>
-          <input type="radio" name="answer">
-          Класс, применяемый к дочерним элементам
-      </label>
-  </form>
-
-  <!-- Девятый вопрос -->
-  <div class="question">
-      <p>Вопрос 9</p>
-      <p>Какое свойство CSS используется для добавления отступов внутри элемента?</p>
-  </div>
-  <form class="test-form">
-      <label>
-          <input type="radio" name="answer">
-          margin
-      </label>
-      <br>
-      <label>
-          <input type="radio" name="answer" data-correct="true">
-          padding <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
-      </label>
-      <br>
-      <label>
-          <input type="radio" name="answer">
-          border
-      </label>
-  </form>
-
-  <!-- Десятый вопрос -->
-  <div class="question">
-      <p>Вопрос 10</p>
-      <p>Какое свойство CSS используется для изменения шрифта текста?</p>
-  </div>
-  <form class="test-form">
-      <label>
-          <input type="radio" name="answer" data-correct="true">
-          font-family <!-- ПРАВИЛЬНЫЙ ОТВЕТ -->
-      </label>
-      <br>
-      <label>
-          <input type="radio" name="answer">
-          text-align
-      </label>
-      <br>
-      <label>
-          <input type="radio" name="answer">
-          font-size
-      </label>
-  </form>
-  <button class="submit-button-css" onclick="checkAnswers()">Проверить ответы</button>
-  <section class="results"></section>
-
-
-        </section>
+    </main>
+    <!-- Интерактивная часть -->
+    <section></section>
+    <!-- Обычный футтер (без информации про колледж и тп) -->
+    <footer>
+      <div class="footer-info item">
+        <h4>STUDY-GUIDE</h4>
+        <p>Основные разделы | О сайте</p>
+        <hr />
+        <p>Год создания &copy; 2024</p>
+        <p>Группа разработчиков</p>
+        <p>Все права защищены</p>
+      </div>
+      <section class="about-site item">
+        <h4>Для чего нужен наш справочник?</h4>
+        <p>
+          Справочник HTML, CSS и JavaScript - ваш надежный источник знаний о
+          веб-разработке. Мы стремимся предоставить вам обширную базу знаний,
+          необходимую для создания красивых и функциональных веб-приложений.
+          Наша цель - сделать процесс изучения и использования технологий
+          веб-разработки максимально простым и доступным.
+        </p>
       </section>
-    </section>
-  </main>
-  <!-- Интерактивная часть -->
-  <section></section>
-  <!-- Обычный футтер (без информации про колледж и тп) -->
-  <footer>
-    <div class="footer-info item">
-      <h4>STUDY-GUIDE</h4>
-      <p>Основные разделы | О сайте</p>
-      <hr />
-      <p>Год создания &copy; 2024</p>
-      <p>Группа разработчиков</p>
-      <p>Все права защищены</p>
-    </div>
-    <section class="about-site item">
-      <h4>Для чего нужен наш справочник?</h4>
-      <p>
-        Справочник HTML, CSS и JavaScript - ваш надежный источник знаний о
-        веб-разработке. Мы стремимся предоставить вам обширную базу знаний,
-        необходимую для создания красивых и функциональных веб-приложений.
-        Наша цель - сделать процесс изучения и использования технологий
-        веб-разработки максимально простым и доступным.
-      </p>
-    </section>
-  </footer>
-  <!-- Активные скрипты -->
+    </footer>
+    <!-- Активные скрипты -->
 
-  <script src="js/script.js"></script>
-  <script src="js/content.js"></script>
-  <script src="js/authorization.js"></script>
-  <script src="js/tests.js"></script>
-</body>
-
+    <script src="js/script.js"></script>
+    <script
+      src="js/content.js"
+      id="dataScript"
+      data-page="css-themes"
+      data-size="13"
+    ></script>
+    <script src="js/authorization.js"></script>
+    <script src="js/tests.js"></script>
+    <script src="js/prism.js"></script>
+  </body>
 </html>
