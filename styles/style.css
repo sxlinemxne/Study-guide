@@ -120,12 +120,12 @@ nav ul li a {
 
 /* Стили для Footer */
 footer {
+  background-color: var(--header-bg-color);
   display: flex;
   padding-top: 25px;
-  padding-bottom: 65px;
-  margin-left: 250px;
-  margin-right: 215px;
-  color: #bbbbbbd7;
+  width: 65%;
+  height: 250px;
+  margin: auto;
   font-size: 14px;
 }
 
