@@ -177,6 +177,9 @@ code.language-css .token.selector > .token.pseudo-element {
 .token.class-name {
   color: #fb94ff;
 }
+.token.property-access {
+  color: #ff0000;
+}
 
 .token.operator,
 .token.entity,

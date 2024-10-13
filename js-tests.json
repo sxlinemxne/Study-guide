@@ -1,0 +1,252 @@
+{
+  "1": [
+      {
+        "question":"Какой метод используется для получения элемента DOM по его идентификатору (ID)?",
+        "answers":["getElementById()", "querySelector()", "getElementsByClassName()", "getElementsByTagName()"],
+        "correct": 0
+      },
+      {
+        "question":"Какой из методов возвращает коллекцию всех элементов с указанным классом?",
+        "answers":["getElementById()", "querySelector()", "getElementsByClassName()", "getElementsByName()"],
+        "correct": 2
+      },
+      {
+        "question":"Что возвращает метод `querySelector()`?",
+        "answers":["Все элементы, соответствующие селектору", "Первый элемент, соответствующий селектору", "Коллекцию элементов", "Массив элементов"],
+        "correct": 1
+      },
+      {
+        "question":"Как изменить текст внутри элемента с помощью JavaScript?",
+        "answers":["element.value = \"новый текст\";", "element.innerHTML = \"новый текст\"; ", "element.textContent = \"новый текст\";", "Все вышеперечисленные варианты верны."],
+        "correct": 3
+      },
+      {
+        "question":"Какой метод добавляет обработчик события к элементу?",
+        "answers":["addEventListener()", "attachEvent()", "onClick()", "setEventHandler()"],
+        "correct": 0
+      },
+      {
+        "question":"Как удалить элемент из DOM?",
+        "answers":["element.remove()", "element.delete()", "element.detach()", "removeElement()"],
+        "correct": 0
+      },
+      {
+        "question":"Как можно получить доступ к атрибутам элемента HTML?",
+        "answers":["element.getAttribute(\"атрибут\")", "element.setAttribute(\"атрибут\", \"значение\")", "element.attributes", "Все вышеперечисленные варианты верны."],
+        "correct": 3
+      },
+      {
+        "question":"Какой из следующих вариантов является правильным способом установки класса для элемента?",
+        "answers":["element.className = \"новый класс\";", "element.addClass(\"новый класс\");", "element.setAttribute(\"class\", \"новый класс\");", "A и C правильны."],
+        "correct": 3
+      },
+      {
+        "question":"Как обойтись без использования циклов для изменения стилей нескольких элементов на странице?",
+        "answers":["document.querySelectorAll()", "document.getElementsByClassName()", "document.styleSheets()", "Невозможно, всегда нужны циклы."],
+        "correct": 0
+      },
+      {
+        "question":"Как узнать, было ли событие \"клик\" вызвано по конкретному элементу?",
+        "answers":["event.target", "event.source", "event.element", "event.node"],
+        "correct": 0
+      }
+    ],  
+  "4": [
+      {
+        "question":"Какой из следующих типов данных не существует в JavaScript?",
+        "answers":["Boolean", "String", "Character", "Number"],
+        "correct": 2
+      },
+      {
+        "question":"Что вернет выражение \"typeof null\"",
+        "answers":["\"object\"", "\"null\"", "\"undefined\"", "\"boolean\""],
+        "correct": 0
+      },
+      {
+        "question":"Какой из следующих вариантов является примером примитивного типа в JavaScript",
+        "answers":["Array", "Object", "Function", "Symbol"],
+        "correct": 3
+      },
+      {
+        "question":"Какой из следующих типов данных является ссылочным типом (reference type)?",
+        "answers":["Number", "String ", "Boolean", "Object"],
+        "correct": 3
+      },
+      {
+        "question":"Какое значение вернёт выражение `NaN === NaN`?",
+        "answers":["true", "false", "undefined", "null"],
+        "correct": 1
+      },
+      {
+        "question":"Какой метод можно использовать, чтобы проверить, является ли значение типа \"NaN\"?",
+        "answers":["isNaN()", "checkNaN()", "isNumber()", "validateNaN()"],
+        "correct": 0
+      },
+      {
+        "question":"Какой из следующих операторов используется для проверки равенства значений и типов?",
+        "answers":["==", "===", "=", "!="],
+        "correct": 1
+      },
+      {
+        "question":"Что произойдет при сложении числа и строки в JavaScript, например, выражении 5 + \"5\"?",
+        "answers":["10", "\"55\"", "\"10\"", "Ошибка"],
+        "correct": 1
+      },
+      {
+        "question":"Какой из следующих типов данных не является примитивным в JavaScript?",
+        "answers":["BigInt", "String", "Object", "Undefined"],
+        "correct": 2
+      },
+      {
+        "question":"Какой тип данных будет у переменной после выполнения следующего кода: \"let x = 10; x = x.toString();\"?",
+        "answers":["Number", "String", "Boolean", "Undefined"],
+        "correct": 1
+      }
+    ],
+    "5": [
+      {
+        "question":"Что такое переменная в JavaScript?",
+        "answers":["Структура данных для хранения значений", "Команда для выполнения операции", "Способ определения типа данных", "Ключевое слово для создания функций"],
+        "correct": 0
+      },
+      {
+        "question":"Какой оператор используется для объявления переменной?",
+        "answers":["let", "var", "const", "Все вышеперечисленные"],
+        "correct": 3
+      },
+      {
+        "question":"Какой метод используется для вывода данных в консоль?",
+        "answers":["print()", "console.log()", "output()", "show()"],
+        "correct": 1
+      },
+      {
+        "question":"Какой из следующих операторов служит для сравнения значений?",
+        "answers":["=", "==", ":=", "=>"],
+        "correct": 1
+      },
+      {
+        "question":"Какой из следующих типов данных является примитивным в JavaScript?",
+        "answers":["Object", "Array", "Function", "String"],
+        "correct": 3
+      },
+      {
+        "question":"Что такое функция в JavaScript?",
+        "answers":["Набор инструкций, выполняемых один раз", "Блок кода, который можно вызвать многократно", "Структура для хранения данных", "Команда для выполнения цикла"],
+        "correct": 1
+      },
+      {
+        "question":"Как объявить функцию в JavaScript?",
+        "answers":["function myFunction() {}", "declare myFunction() {}", "func myFunction() {}", "function: myFunction() {}"],
+        "correct": 0
+      },
+      {
+        "question":"Какой оператор используется для выполнения условного оператора?",
+        "answers":["if", "while", "for", "switch"],
+        "correct": 0
+      },
+      {
+        "question":"Какой из следующих методов полезен для перебора массивов?",
+        "answers":["map()", "filter()", "forEach()", "Все вышеперечисленные"],
+        "correct": 3
+      },
+      {
+        "question":"Какой символ используется для комментариев в коде JavaScript?",
+        "answers":["// для однострочных и /* */ для многострочных", "# для однострочных и / / для многострочных", "-- для однострочных и /* */ для многострочных", "/* для однострочных и // для многострочных"],
+        "correct": 0
+      }
+    ], 
+    "8": [
+      {
+        "question":"Какой из следующих способов используется для создания пустого массива в JavaScript?",
+        "answers":["var arr = new Array();", "var arr = [];", "Оба варианта верны.", "Ни один из вариантов не верен."],
+        "correct": 2
+      },
+      {
+        "question":"Как добавить элемент в конец массива в JavaScript?",
+        "answers":["arr.push(element);", "arr.add(element);", "arr.append(element);", "arr.insert(element);"],
+        "correct": 0
+      },
+      {
+        "question":"Как получить длину массива в JavaScript?",
+        "answers":["arr.size();", "arr.length;", "arr.count();", "length(arr);"],
+        "correct": 1
+      },
+      {
+        "question":"Как создать массив с начальными значениями \"apple\", \"banana\", \"cherry\"?",
+        "answers":["var fruits = [\"apple\", \"banana\", \"cherry\"];", "var fruits = new Array(\"apple\", \"banana\", \"cherry\"); ", "Оба варианта верны.", "Ни один из вариантов не верен."],
+        "correct": 2
+      },
+      {
+        "question":"Как можно получить первый элемент массива `arr`?",
+        "answers":["arr[0];", "arr.first();", "arr.get(0);", "arr[1];"],
+        "correct": 0
+      },
+      {
+        "question":"Как удалить последний элемент массива в JavaScript?",
+        "answers":["arr.pop();", "arr.removeLast();", "arr.delete();", "arr.cut();"],
+        "correct": 0
+      },
+      {
+        "question":"Как создать массив с числами от 1 до 5 с помощью метода `Array`?",
+        "answers":["var numbers = new Array(1, 2, 3, 4, 5);", "var numbers = Array(1, 2, 3, 4, 5);", "var numbers = [1, 2, 3, 4, 5];", "Оба варианта A и C верны"],
+        "correct": 3
+      },
+      {
+        "question":"Как скопировать массив `arr1` в новый массив `arr2`?",
+        "answers":["var arr2 = arr1;", "var arr2 = arr1.slice();", "var arr2 = Array.from(arr1);", "Все выше указанные варианты верны."],
+        "correct": 3
+      }
+    ],
+    "9": [
+      {
+        "question":"Какой метод используется для добавления элемента в конец массива?",
+        "answers":["push()", "pop()", "shift()", "unshift()"],
+        "correct": 0
+      },
+      {
+        "question":"Какой метод возвращает новый массив, содержащий результаты вызова определенной функции для каждого элемента массива?",
+        "answers":["map()", "filter()", "reduce()", "forEach()"],
+        "correct": 0
+      },
+      {
+        "question":"Какой метод используется для удаления последнего элемента из массива?",
+        "answers":["push()", "shift()", "pop()", "splice()"],
+        "correct": 2
+      },
+      {
+        "question":"Какой метод позволяет удалить элементы из массива по индексу?",
+        "answers":["slice()", "splice()", "filter()", "map()"],
+        "correct": 1
+      },
+      {
+        "question":"Как можно узнать длину массива `arr`?",
+        "answers":["arr.length", "length(arr)", "arr.size", "arr.count()"],
+        "correct": 0
+      },
+      {
+        "question":"Какой метод используется для создания нового массива, содержащего все элементы, которые соответствуют условию, заданному в функции?",
+        "answers":["filter()", "find()", "reduce()", "every()"],
+        "correct": 0
+      },
+      {
+        "question":"Какой метод объединяет два или более массивов?",
+        "answers":["concat()", "join()", "merge()", "combine()"],
+        "correct": 0
+      },
+      {
+        "question":"Какой метод возвращает первый элемент массива, который соответствует условию, заданному в функции?",
+        "answers":["find()", "some()", "filter()", "every()"],
+        "correct": 0
+      },
+      {
+        "question":"Как преобразовать массив в строку, используя заданный разделитель?",
+        "answers":["join()", "slice()", "toString()", "map()"],
+        "correct": 0
+      },
+      {
+        "question":"Какой из следующих методов изменяет исходный массив?",
+        "answers":["map()", "filter()", "sort()", "concat()"],
+        "correct": 2
+      }
+    ]
+}
