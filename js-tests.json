@@ -11,7 +11,7 @@
         "correct": 2
       },
       {
-        "question":"Что возвращает метод `querySelector()`?",
+        "question":"Что возвращает метод \"querySelector()\"?",
         "answers":["Все элементы, соответствующие селектору", "Первый элемент, соответствующий селектору", "Коллекцию элементов", "Массив элементов"],
         "correct": 1
       },
@@ -73,7 +73,7 @@
         "correct": 3
       },
       {
-        "question":"Какое значение вернёт выражение `NaN === NaN`?",
+        "question":"Какое значение вернёт выражение \"NaN === NaN\"?",
         "answers":["true", "false", "undefined", "null"],
         "correct": 1
       },
@@ -177,7 +177,7 @@
         "correct": 2
       },
       {
-        "question":"Как можно получить первый элемент массива `arr`?",
+        "question":"Как можно получить первый элемент массива \"arr\"?",
         "answers":["arr[0];", "arr.first();", "arr.get(0);", "arr[1];"],
         "correct": 0
       },
@@ -187,12 +187,12 @@
         "correct": 0
       },
       {
-        "question":"Как создать массив с числами от 1 до 5 с помощью метода `Array`?",
+        "question":"Как создать массив с числами от 1 до 5 с помощью метода \"Array\"?",
         "answers":["var numbers = new Array(1, 2, 3, 4, 5);", "var numbers = Array(1, 2, 3, 4, 5);", "var numbers = [1, 2, 3, 4, 5];", "Оба варианта A и C верны"],
         "correct": 3
       },
       {
-        "question":"Как скопировать массив `arr1` в новый массив `arr2`?",
+        "question":"Как скопировать массив \"arr1\" в новый массив \"arr2\"?",
         "answers":["var arr2 = arr1;", "var arr2 = arr1.slice();", "var arr2 = Array.from(arr1);", "Все выше указанные варианты верны."],
         "correct": 3
       }
@@ -219,7 +219,7 @@
         "correct": 1
       },
       {
-        "question":"Как можно узнать длину массива `arr`?",
+        "question":"Как можно узнать длину массива \"arr\"?",
         "answers":["arr.length", "length(arr)", "arr.size", "arr.count()"],
         "correct": 0
       },

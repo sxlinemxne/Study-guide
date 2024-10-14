@@ -1,8 +1,8 @@
-var selectedTheme, size;
+var selectedTheme, size, theme;
 document.addEventListener("DOMContentLoaded", function () {
   var scriptTag = document.getElementById("dataScript");
 
-  var theme = scriptTag.dataset.page;
+  theme = scriptTag.dataset.page;
   size = scriptTag.dataset.size;
   updateTheme(theme, selectedTheme);
 });
@@ -22,7 +22,7 @@ function loadJSON(file, callback) {
   xobj.send(null);
 }
 function updateTheme(theme, themeType) {
-  loadJSON(theme + ".json", function (data) {
+  loadJSON(theme + "-themes.json", function (data) {
     contentElement.innerHTML = "";
     asideElement.innerHTML = "";
 
@@ -174,7 +174,8 @@ function checkAnswers(quizData) {
 
 async function fetchQuizData(selectedTheme) {
   try {
-    const response = await fetch("js-tests.json");
+    console.log(theme + "-tests.json");
+    const response = await fetch(theme + "-tests.json");
     const quizData = await response.json();
     loadQuestions(quizData, selectedTheme);
 

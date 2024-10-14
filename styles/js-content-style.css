@@ -1,10 +1,5 @@
-/* Ссылки на шрифты */
-
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap");
-
-/* Основные переменные */
-
 :root {
     --main-color: #7c4dff;
     --secondary-color: #fe6b51;
@@ -17,13 +12,12 @@
     --gradient: linear-gradient(
         var(--secondary-color),
         var(--main-color)
-    ); /* Линейный градиент фиолетовый-бирюзовый */
+    );
 }
 html {
     width: auto;
 }
 
-/* Общие стили: устанавливают общие свойства для всех элементов. */
 * {
     margin: 0;
     padding: 0;
@@ -46,7 +40,7 @@ a {
     font-weight: 500;
     font-size: 16px;
 }
-/* Кастомный скролл */
+
 html::-webkit-scrollbar {
     width: 0.27rem;
 }
@@ -57,7 +51,6 @@ html::-webkit-scrollbar-thumb {
     background: var(--bg-color);
     border-radius: 10rem;
 }
-/* Стилистика навбара */
 header {
     display: flex;
     justify-content: space-between;
@@ -104,7 +97,6 @@ main {
     background-position: center center;
     background-size: 187%;
 }
-/* Стили для логотипа и названия сайта */
 .logo-container {
     margin-left: 110px;
     display: flex;
@@ -225,15 +217,7 @@ main {
 .content-text p {
     white-space: pre-wrap;
 }
-/* .test {
-  background-color: #ffffff;
-  filter: drop-shadow(0px 0px 23px rgba(0, 0, 0, 0.25));
-  border-radius: 15px;
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
-  height: 300px;
-  margin-top: 50px;
-} */
+
 
 #test {
     visibility: visible;
@@ -241,11 +225,10 @@ main {
     filter: drop-shadow(0px 0px 23px rgba(0, 0, 0, 0.25));
     border-radius: 15px;
     margin-top: 50px;
-    padding: 20px; /* Add padding for spacing */
-    overflow-y: auto; /* Enable scrolling if content exceeds height */
+    padding: 20px;
+    overflow-y: auto;
 }
 
-/* Стили для Footer */
 footer {
     background-color: var(--header-bg-color);
     display: flex;
@@ -263,14 +246,12 @@ footer p {
     color: #bbbbbbd7;
 }
 
-/* Отступы между частями flex у Footer */
 .item {
     color: #bbbbbbd7;
     flex: 1 1 auto;
     margin: 0 5px;
 }
 
-/* Текст "STUDY-GUIDE" */
 .footer-info h4 {
     font-size: 24px;
     margin-bottom: 10px;
@@ -283,7 +264,6 @@ footer p {
     margin-inline-end: 195px;
 }
 
-/* Правая часть футера */
 .about-site {
     display: block;
     width: 20%;
@@ -299,9 +279,6 @@ footer p {
     padding-bottom: 30px;
 }
 
-/* .theme-text {
-    width: 100%;
-} */
 
 .header-icons {
     display: flex;
@@ -376,20 +353,20 @@ footer p {
     cursor: pointer;
 }
 
-/* Стили для кнопки "Проверить ответы" */
+
 .submit-button {
-    background-color: var(--main-color); /* Цвет фона */
-    color: var(--white-color); /* Цвет текста */
-    border: none; /* Убираем границу */
-    border-radius: 5px; /* Скругляем углы */
-    padding: 10px 20px; /* Внутренние отступы */
-    font-size: 16px; /* Размер шрифта */
-    cursor: pointer; /* Курсор при наведении */
-    transition: background-color 0.3s ease; /* Плавный переход цвета фона */
+    background-color: var(--main-color); 
+    color: var(--white-color); 
+    border: none; 
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
 }
 
 .submit-button:hover {
-    background-color: var(--secondary-color); /* Цвет фона при наведении */
+    background-color: var(--secondary-color); 
 }
 
 #checkAnswers {
