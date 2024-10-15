@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap");
 :root {
     --main-color: #7c4dff;
-    --secondary-color: #fe6b51;
+    --secondary-color: #dbde3d;
     --white-color: #ffffff;
     --gray-color: #676767;
     --header-bg-color: #202542;
@@ -130,7 +130,7 @@ main {
 }
 
 .main-content {
-    width: 85%;
+    width: 120%;
 }
 
 .prev:hover {
@@ -381,5 +381,5 @@ footer p {
 }
 #checkAnswers:hover {
     cursor: pointer;
-    background-color: #dbde3d;
+    background-color: var(--secondary-color);
   }

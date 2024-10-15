@@ -198,7 +198,6 @@ function clearQuestions() {
   const section = document.getElementById("test");
   section.innerHTML = "";
   const res = document.getElementById("result");
-  res.innerHTML = ""; 
-
+  res.innerHTML = "";
 }
 
