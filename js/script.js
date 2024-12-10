@@ -1,3 +1,18 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const root = document.documentElement;
+
+  // Проверяем, какая тема сохранена
+  const savedTheme = localStorage.getItem('theme');
+
+  if (savedTheme === 'white') {
+      root.style.setProperty('--bg-color', '#f6f6f6');
+      root.style.setProperty('--font-color', 'black');
+  } else if (savedTheme === 'black') {
+      root.style.setProperty('--bg-color', '#232323');
+      root.style.setProperty('--font-color', 'white');
+  }
+});
+
 var leftElements = document.querySelectorAll(".left");
 var rightElements = document.querySelectorAll(".right");
 var subscribeFormElement = document.querySelectorAll(".subscribe-form");
@@ -68,6 +83,7 @@ function switchWhite() {
 
     root.style.setProperty('--bg-color', '#f6f6f6');
     root.style.setProperty('--font-color', 'black');
+    localStorage.setItem('theme', 'white');
 }
 
 
@@ -76,5 +92,5 @@ function switchBlack() {
 
     root.style.setProperty('--bg-color', '#232323');
     root.style.setProperty('--font-color', 'white');
-
+    localStorage.setItem('theme', 'black');
 }

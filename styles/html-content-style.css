@@ -225,25 +225,14 @@ main {
 .content-text p {
     white-space: pre-wrap;
 }
-/* .test {
-  background-color: #ffffff;
-  filter: drop-shadow(0px 0px 23px rgba(0, 0, 0, 0.25));
-  border-radius: 15px;
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
-  height: 300px;
-  margin-top: 50px;
-} */
-
-.test {
+#test {
+    visibility: visible;
     background-color: var(--bg-color);
     filter: drop-shadow(0px 0px 23px rgba(0, 0, 0, 0.25));
     border-radius: 15px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
     margin-top: 50px;
-    padding: 20px; /* Add padding for spacing */
-    overflow-y: auto; /* Enable scrolling if content exceeds height */
+    padding: 20px;
+    overflow-y: auto;
 }
 
 /* Стили для Footer */
@@ -345,7 +334,7 @@ footer p {
 .theme-switcher-drop {
     position: relative;
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 110px;
 }
 
 .dropdown-content {
@@ -392,3 +381,65 @@ footer p {
 .submit-button:hover {
     background-color: var(--secondary-color); /* Цвет фона при наведении */
 }
+
+
+
+.navbar-button:hover {
+    color: var(--main-color);
+    transition: color 0.3s ease;
+    cursor: pointer;
+  }
+
+  .header-button-list {
+    margin-right: 110px;
+    margin-top: 10px;
+  }
+  .header-button-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; 
+    margin-left: 62px;
+  }
+  .header-button-list li a {
+    color: var(--white-color);
+    text-decoration: none;
+    font-size: 21px;
+    position: relative; /* Позволяет позиционировать вертикальную полосу */
+    padding-left: 15px; 
+  }
+  .header-button-list li a::before {
+    content: "";
+    position: absolute;
+    top: 50%; 
+    transform: translateY(-50%);
+    left: 0;
+    width: 4px; 
+    height: 40px;
+    background-color: transparent; /* Цвет по умолчанию */
+  }
+  /* Цвета кнопок в шапке */
+  .header-button-list li:nth-child(1) a::before {
+    background-color: #db4130;
+  }
+  .header-button-list li:nth-child(2) a::before {
+    background-color: #188ddb; 
+  }
+  .header-button-list li:nth-child(3) a::before {
+    background-color: #d3d61c; 
+  }
+
+  #checkAnswers {
+    background-color: var(--main-color);
+    max-width: 200px;
+    align-items: center;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border-radius: 0.6rem;
+    text-align: center;
+    transition: background-color 0.4s;
+}
+#checkAnswers:hover {
+    cursor: pointer;
+    background-color: var(--secondary-color);
+  }

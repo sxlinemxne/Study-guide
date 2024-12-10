@@ -151,26 +151,45 @@ function checkAnswers(quizData) {
 
   for (let topicIndex in quizData) {
     if (topicIndex == selectedTheme) {
-    const topicQuestions = quizData[topicIndex];
-    topicQuestions.forEach((question, questionIndex) => {
-      const selectedOption = document.querySelector(
-        `input[name="topic-${topicIndex}-question-${questionIndex}"]:checked`
-      );
-      if (selectedOption) {
-        const userAnswer = parseInt(selectedOption.value);
-        if (userAnswer === question.correct) {
-          correctAnswersCount++;
-        }
-      }
+      const topicQuestions = quizData[topicIndex];
+      topicQuestions.forEach((question, questionIndex) => {
+        const selectedOption = document.querySelector(
+          `input[name="topic-${topicIndex}-question-${questionIndex}"]:checked`
+        );
 
-      totalQuestions++;
-    });
+        // Находим все варианты ответа для текущего вопроса
+        const options = document.querySelectorAll(
+          `input[name="topic-${topicIndex}-question-${questionIndex}"]`
+        );
+
+        // Проверяем и отмечаем правильные и неправильные ответы
+        options.forEach((option) => {
+          if (parseInt(option.value) === question.correct) {
+            option.parentElement.style.color = "green"; // Зелёный цвет для правильного ответа
+          } else {
+            option.parentElement.style.color = ""; // Сбрасываем стиль для остальных
+          }
+        });
+
+        if (selectedOption) {
+          const userAnswer = parseInt(selectedOption.value);
+          if (userAnswer === question.correct) {
+            correctAnswersCount++;
+          } else {
+            // Если ответ неверный, красим выбранный вариант в красный
+            selectedOption.parentElement.style.color = "red";
+          }
+        }
+
+        totalQuestions++;
+      });
+    }
   }
-}
+
   const resultDiv = document.getElementById("result");
+
   resultDiv.innerHTML = `Вы ответили правильно на ${correctAnswersCount} из ${totalQuestions} вопросов.`;
 }
-
 
 async function fetchQuizData(selectedTheme) {
   try {
@@ -198,7 +217,6 @@ function clearQuestions() {
   const section = document.getElementById("test");
   section.innerHTML = "";
   const res = document.getElementById("result");
-  res.innerHTML = ""; 
-
+  res.innerHTML = "";
 }
 
