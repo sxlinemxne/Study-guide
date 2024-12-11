@@ -12,10 +12,9 @@
   <!-- Расположить навигационную панель в правильном стиле -->
   <header>
     <div class="logo-container">
-      <!-- Обернули логотип и название в div с классом logo-container -->
       <a href="#" class="navbar-button">
         <img src="img/logo.jpg" alt="website-logo" class="test-icon" />
-        <span class="website-name navbar-button">STUDY GUIDE</span>
+        <span><a href="index.html" class="website-name navbar-button">STUDY GUIDE</a></span>
       </a>
     </div>
     <nav class="navbar-buttons">
@@ -32,6 +31,18 @@
         </li>
       </ul>
     </nav>
+    <div class="controls">
+      <div class="header-icons">
+        <div class="theme-switcher-drop">
+          <button class="theme-switcher" src="img/theme-switcher.svg"></button>
+          <div class="dropdown-content">
+            <a href="#" onclick="switchWhite()">Светлая</a>
+            <a href="#"onclick="switchBlack()">Тёмная</a>
+          </div>
+        </div>
+        
+      </div>
+    </div>
   </header>
   <!-- Скрипты для работы функционала сайта -->
 
