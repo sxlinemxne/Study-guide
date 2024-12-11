@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="styles/html-content-style.css" />
     <link href="styles/prism-shades-of-purple.css" rel="stylesheet" />
     <link rel="stylesheet" href="styles/auth-forms.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="./styles/slider.css">
     <title>HTML-guide</title>
   </head>
 
@@ -76,6 +78,185 @@
           </button>
           <section class="content-part">
             <section class="content-text" id="content-text"></section>
+            <section class="slider">
+              <div class="swiper-container">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide" data-slide="1">
+                    <table border="1">
+                      <colgroup>
+                        <col span="2" style="background:Khaki">
+                        <col style="background-color:LightCyan">
+                      </colgroup>
+                      <tr>
+                        <th>№ п/п</th>
+                        <th>Наименование</th>
+                        <th>Цена, руб.</th>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>Карандаш цветной</td>
+                        <td>20,00</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Линейка 20 см</td>
+                        <td>30,00</td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="swiper-slide" data-slide="2">
+                    <table border="1">
+                      <tr>
+                        <th>№ п/п</th>
+                        <th>Наименование товара</th>
+                        <th>Ед. изм.</th>
+                        <th>Количество</th>
+                        <th>Цена за ед. изм., руб.</th>
+                        <th>Стоимость, руб.</th>
+                      </tr>
+                      <tr>
+                        <td>1.</td>
+                        <td>Томаты свежие</td>
+                        <td>кг</td>
+                        <td>15,20</td>
+                        <td>69,00</td>
+                        <td>1048,80</td>
+                      </tr>
+                      <tr>
+                        <td>2.</td>
+                        <td>Огурцы свежие</td>
+                        <td>кг</td>
+                        <td>2,50</td>
+                        <td>48,00</td>
+                        <td>120,00</td>
+                      </tr>
+                      <tr>
+                        <td colspan="5" style="text-align:right">ИТОГО:</td>
+                        <td>1168,80</td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="swiper-slide" data-slide="3">
+                    <table align=center bordercolor="#99181b">
+                      <tr bgcolor="#99181b" style="color:#f7f3e4">
+                        <td> </td>
+                        <td>2004</td>
+                        <td>2005</td>
+                        <td>2006</td>
+                      </tr>
+                      <tr bgcolor="#f7f3e4">
+                        <td>Рубины</td>
+                        <td>43</td>
+                        <td>51</td>
+                        <td>79</td>
+                      </tr>
+                      <tr bgcolor="#f5ebc6">
+                        <td>Изумруды</td>
+                        <td>28</td>
+                        <td>34</td>
+                        <td>48</td>
+                      </tr>
+                      <tr bgcolor="#f7f3e4">
+                        <td>Сапфиры</td>
+                        <td>29</td>
+                        <td>57</td>
+                        <td>36</td>
+                      </tr>
+                      <tr bgcolor="#f5ebc6">
+                        <td>Аметисты</td>
+                        <td>23</td>
+                        <td>64</td>
+                        <td>97</td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="swiper-slide" data-slide="4">
+                    <ul class="reset-style-ul">
+                      <li>Пункт 1.</li>
+                      <li>Пункт 2.
+                        <ul>
+                          <li>Подпункт 2.1.</li>
+                          <li>Подпункт 2.2.
+                            <ul>
+                              <li>Подпункт 2.2.1.</li>
+                              <li>Подпункт 2.2.2.</li>
+                            </ul>
+                          </li>
+                          <li>Подпункт 2.3.</li>
+                        </ul>
+                      </li>
+                      <li>Пункт 3.</li>
+                    </ul>
+                  </div>
+                  <div class="swiper-slide" data-slide="5">
+                    <style>
+                      .ul2 {
+                        list-style: none;
+  
+                        padding-left: 20px;
+                      }
+  
+                      .ul2 li {
+                        position: relative;
+                        padding-left: 30px;
+                      }
+  
+                      .ul2 li::before {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 20px;
+                        height: 20px;
+                        background-image: url('/img/arrow.png');
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                      }
+                    </style>
+                    <ul class="ul2">
+                      <li>Сепульки</li>
+                      <li>Сепулькарии</li>
+                      <li>Сепуление</li>
+                    </ul>
+  
+                  </div>
+                  <div class="swiper-slide" data-slide="6">
+                    <style>
+                      ol li {
+                        font-weight: bold;
+                      }
+  
+                      ol ol {
+                        list-style: lower-alpha;
+                      }
+  
+                      ol ol li {
+                        font-weight: normal;
+                      }
+                    </style>
+                    <ol>
+                      <li>Русская кухня
+                        <ol>
+                          <li>Уха бурлацкая</li>
+                          <li>Бабушкина тюря</li>
+                          <li>Растегай</li>
+                        </ol>
+                      </li>
+                      <li>Беларусская кухня</li>
+                      <li>Молдавская кухня</li>
+                    </ol>
+  
+                  </div>
+                </div>
+  
+              </div>
+              </div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+            </section>
+            <button class="view-code">Посмотреть код</button>
+            <div id="code-display" class="code-box"></div>
             <section id="test">
             </section>
             <button id="checkAnswers" onclick="checkAnswers()">Проверить ответы</button>
@@ -122,5 +303,7 @@
     <script src="js/authorization.js"></script>
 
     <script src="js/tests.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="./js/slider.js"></script>
   </body>
 </html>

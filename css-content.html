@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="styles/сss-content-style.css" />
     <link rel="stylesheet" href="styles/auth-forms.css" />
     <link href="styles/prism-shades-of-purple.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="./styles/slider.css">
     <title>CSS-guide</title>
   </head>
 
@@ -78,6 +80,94 @@
           </button>
           <section class="content-part">
             <section class="content-text" id="content-text"></section>
+            <section class="slider">
+              <div class="swiper-container">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide" data-slide="7">
+                    <style>
+                      ::selection {
+                        background-color: green;
+                        color: white;
+                      }
+  
+                      p span {
+                        color: white;
+                        background: green;
+                      }
+                    </style>
+                    <p>
+                      <span>Быть энтузиасткой сделалось ее общественным положением, и<br>
+                        иногда, когда ей даже того не хотелось, она, чтобы не обмануть<br>
+                        ожиданий людей, знавших ее, делалась энтузиасткой.<br>
+                        В середине разговора про политические действия Анна Павловна<br>
+                        разгорячилась
+                        —Ах, не говорите мне про Австрию! Я ничего не понимаю, может<br>
+                        быть, но Австри</span>я никогда не хотела и не хочет войны. Она предает<br>
+                      нас. Россия одна должна быть спасительницей Европы. Наш<br>
+                      благодетель знает свое высокое призвание и будет верен ему. Вот одно,<br> во что я верю.
+                    </p>
+  
+                  </div>
+                  <div class="swiper-slide" data-slide="8">
+                    <style>
+                      body {
+                        counter-reset: paragraph 7;
+                      }
+  
+                      .abzac {
+                        padding: 10px 0;
+                        counter-increment: paragraph;
+                      }
+  
+                      .abzac::before {
+                        content: "Абзац " counter(paragraph) ". ";
+                        font-weight: bold;
+                      }
+                    </style>
+                    <div>
+  
+                      <p class="abzac">Быть энтузиасткой сделалось ее общественным положением, и<br>
+                        иногда, когда ей даже того не хотелось, она, чтобы не обмануть<br>
+                        ожиданий людей, знавших ее, делалась энтузиасткой.</p>
+                      <p class="abzac">В середине разговора про политические действия Анна Павловна<br>
+                        разгорячилась</p>
+                      <p class="abzac">—Ах, не говорите мне про Австр ничегоию! Я не понимаю, может<br>
+                        быть, но Австрия никогда не хотела и не хочет войны. Она предает<br>
+                        нас. Россия одна должна быть спасительницей Европы. Наш<br>
+                        благодетель знает свое высокое призвание и будет верен ему. Вот одно,<br> во что я верю.</p>
+                    </div>
+  
+                  </div>
+                  <div class="swiper-slide" data-slide="9">
+                    <style>
+                      ul li:first-child {
+                        color: red;
+                      }
+  
+                      ul li:last-child {
+                        color: green;
+                      }
+                    </style>
+                    <ul>
+                      <li>1</li>
+                      <li>2</li>
+                      <li>3</li>
+                      <li>4</li>
+                      <li>5</li>
+                      <li>6</li>
+                      <li>7</li>
+                      <li>8</li>
+                      <li>9</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+            </section>
+            <button class="view-code">Посмотреть код</button>
+            <div id="code-display" class="code-box"></div>
             <section id="test">
             </section>
             <button id="checkAnswers" onclick="checkAnswers()">Проверить ответы</button>
@@ -121,5 +211,7 @@
     <script src="js/authorization.js"></script>
     <script src="js/tests.js"></script>
     <script src="js/prism.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="./js/slider.js"></script>
   </body>
 </html>
