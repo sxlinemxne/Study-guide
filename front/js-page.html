@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles/js-style.css" />
-  <link rel="stylesheet" href="styles/auth-forms.css">
   <title>JS-guide</title>
 </head>
 
@@ -41,7 +40,18 @@
             <a href="#"onclick="switchBlack()">Тёмная</a>
           </div>
         </div>
-        
+        <div class="profile-icon">
+          <button class="profile" src="img/profile.svg" onclick="openForm()"></button>
+        </div>
+      </div>
+    </div>
+    <div id="authContainer">
+      <div id="authForm">
+        <span id="closeBtn"onclick="closeForm()">&times;</span>
+        <h2>Авторизация</h2>
+        <input type="email" placeholder="Email"><br><br>
+        <input type="password" placeholder="Пароль"><br><br>
+        <button>Войти</button>
       </div>
     </div>
   </header>
@@ -135,7 +145,6 @@
     </section>
   </footer>
   <!-- Активные скрипты -->
-  <script src="js/authorization.js"></script>
   <script src="js/script.js"></script>
 
 </body>

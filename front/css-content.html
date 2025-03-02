@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/сss-content-style.css" />
-    <link rel="stylesheet" href="styles/auth-forms.css" />
     <link href="styles/prism-shades-of-purple.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="./styles/slider.css">
@@ -41,16 +40,24 @@
       <div class="controls">
         <div class="header-icons">
           <div class="theme-switcher-drop">
-            <button
-              class="theme-switcher"
-              src="img/theme-switcher.svg"
-            ></button>
+            <button class="theme-switcher" src="img/theme-switcher.svg"></button>
             <div class="dropdown-content">
               <a href="#" onclick="switchWhite()">Светлая</a>
-              <a href="#" onclick="switchBlack()">Тёмная</a>
+              <a href="#"onclick="switchBlack()">Тёмная</a>
             </div>
           </div>
-          
+          <div class="profile-icon">
+            <button class="profile" src="img/profile.svg" onclick="openForm()"></button>
+          </div>
+        </div>
+      </div>
+      <div id="authContainer">
+        <div id="authForm">
+          <span id="closeBtn"onclick="closeForm()">&times;</span>
+          <h2>Авторизация</h2>
+          <input type="email" placeholder="Email"><br><br>
+          <input type="password" placeholder="Пароль"><br><br>
+          <button>Войти</button>
         </div>
       </div>
     </header>
@@ -176,9 +183,7 @@
         </section>
       </section>
     </main>
-    <!-- Интерактивная часть -->
-    <section></section>
-    <!-- Обычный футтер (без информации про колледж и тп) -->
+
     <footer>
       <div class="footer-info item">
         <h4>STUDY-GUIDE</h4>
@@ -208,7 +213,6 @@
       data-page="css"
       data-size="13"
     ></script>
-    <script src="js/authorization.js"></script>
     <script src="js/tests.js"></script>
     <script src="js/prism.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

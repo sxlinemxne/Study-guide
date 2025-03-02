@@ -93,3 +93,27 @@ function switchBlack() {
     root.style.setProperty('--font-color', 'white');
     localStorage.setItem('theme', 'black');
 }
+
+
+function openForm() {
+  const container = document.getElementById('authContainer');
+  container.style.display = 'block';
+  setTimeout(() => container.classList.add('show'), 10); // Добавляем задержку для плавности
+}
+
+function closeForm() {
+  const container = document.getElementById('authContainer');
+  container.classList.remove('show');
+  container.classList.add('hide');
+  setTimeout(() => {
+      container.style.display = 'none';
+      container.classList.remove('hide');
+  }, 300); // Ждём завершения анимации перед скрытием
+}
+
+// Закрытие при клике вне формы
+document.getElementById('authContainer').addEventListener('click', function(event) {
+  if (event.target === this) {
+      closeForm();
+  }
+});
