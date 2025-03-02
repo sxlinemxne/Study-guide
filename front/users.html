@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PostgreSQL с JS</title>
+</head>
+<body>
+    <h1>Пользователи</h1>
+    <form id="userForm">
+        <input type="text" id="name" placeholder="Имя" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <button type="submit">Добавить</button>
+    </form>
+    <ul id="userList"></ul>
+
+    <script>
+        // Добавление пользователя
+        document.getElementById("userForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+
+            await fetch("http://localhost:5000/addUser", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, email })
+            });
+
+            loadUsers();
+        });
+
+        // Загрузка пользователей
+        async function loadUsers() {
+            let response = await fetch("http://localhost:5000/users");
+            let users = await response.json();
+            let list = document.getElementById("userList");
+            list.innerHTML = users.map(user => `<li>${user.name} - ${user.email}</li>`).join("");
+        }
+
+        loadUsers();
+    </script>
+</body>
+</html>
