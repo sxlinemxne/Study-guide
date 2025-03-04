@@ -32,7 +32,7 @@
 
         // Загрузка пользователей
         async function loadUsers() {
-            let response = await fetch("http://localhost:5000/users");
+            let response = await fetch("http://localhost:5000/users22");
             let users = await response.json();
             let list = document.getElementById("userList");
             list.innerHTML = users.map(user => `<li>${user.name} - ${user.email}</li>`).join("");

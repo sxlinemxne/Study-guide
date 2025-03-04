@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список учащихся</title>
+</head>
+
+<body>
+  <header>
+    <div class="logo-container">
+      <a href="#" class="navbar-button">
+        <img src="img/logo.jpg" alt="website-logo" class="test-icon" />
+        <span><a href="index.html" class="website-name navbar-button">STUDY GUIDE</a></span>
+      </a>
+    </div>
+    <nav class="navbar-buttons">
+      <ul class="header-button-list">
+        <!-- Добавили класс для списка кнопок -->
+        <li>
+          <a href="html-page.html" class="navbar-button1">HTML</a>
+        </li>
+        <li>
+          <a href="css-page.html" class="navbar-button2">CSS</a>
+        </li>
+        <li>
+          <a href="js-page.html" class="navbar-button3">JavaScript</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="controls">
+      <div class="header-icons">
+        <div class="theme-switcher-drop">
+          <button class="theme-switcher" src="img/theme-switcher.svg"></button>
+          <div class="dropdown-content">
+            <a href="#" onclick="switchWhite()">Светлая</a>
+            <a href="#"onclick="switchBlack()">Тёмная</a>
+          </div>
+        </div>
+        <div id="profile-icon">
+          <button class="profile" src="img/profile.svg" onclick="openForm()"></button>
+          <div id="login-dropdown-content">
+            <a href="userForm.html">Личный кабинет</a>
+            <a href="userForm.html">Список учащихся</a>
+            <a href="#">Список тем</a>
+            <a href="#">Журнал аудита</a>
+            <a href="#" onclick="endSession()">Выйти из аккаунта</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="authContainer">
+      <div id="authForm">
+        <span id="closeBtn"onclick="closeForm()">&times;</span>
+        <h2>Авторизация</h2>
+        <form id="loginForm">
+          <input type="email" id="email" placeholder="Email"><br><br>
+          <input type="password" id="password" placeholder="Пароль"><br><br>
+         <button type="submit">Войти</button>
+        </form>
+      </div>
+    </div>
+  </header>
+    
+</body>
+</html>

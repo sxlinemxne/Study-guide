@@ -127,11 +127,7 @@ main {
     align-items: center;
 }
 
-.navbar-button:hover {
-    color: var(--main-color);
-    transition: color 0.3s ease;
-    cursor: pointer;
-}
+
 .guide {
     display: flex;
     line-height: 26px;
@@ -383,8 +379,19 @@ footer p {
 
 
 
-.navbar-button:hover {
-    color: var(--main-color);
+
+.navbar-button1:hover {
+    color: #ff5757;
+    transition: color 0.3s ease;
+    cursor: pointer;
+  }
+  .navbar-button2:hover {
+    color: #4ba1fe;
+    transition: color 0.3s ease;
+    cursor: pointer;
+  }
+  .navbar-button3:hover {
+    color: #f6ff46;
     transition: color 0.3s ease;
     cursor: pointer;
   }
@@ -562,3 +569,38 @@ cursor: pointer;
 .header-icons {
   display: flex;
 }
+#profile-icon {
+    position: relative;
+    display: inline-block;
+    margin-right: 40px;
+  }
+  
+  #login-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #15182a;
+    border-radius: 10px;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  /* Анимация появления */
+  #login-dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: #f6f6f6;
+  }
+  
+  #login-dropdown-content a:hover {
+    background-color: #4a5491;
+    border-radius: 10px;
+  }
+
+  
+.navbar-button:hover {
+    color: var(--main-color);
+    transition: color 0.3s ease;
+    cursor: pointer;
+  }
