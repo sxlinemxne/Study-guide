@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/userForm-style.css" />
+
     <title>Список учащихся</title>
 </head>
 
@@ -14,20 +16,6 @@
         <span><a href="index.html" class="website-name navbar-button">STUDY GUIDE</a></span>
       </a>
     </div>
-    <nav class="navbar-buttons">
-      <ul class="header-button-list">
-        <!-- Добавили класс для списка кнопок -->
-        <li>
-          <a href="html-page.html" class="navbar-button1">HTML</a>
-        </li>
-        <li>
-          <a href="css-page.html" class="navbar-button2">CSS</a>
-        </li>
-        <li>
-          <a href="js-page.html" class="navbar-button3">JavaScript</a>
-        </li>
-      </ul>
-    </nav>
     <div class="controls">
       <div class="header-icons">
         <div class="theme-switcher-drop">
@@ -61,6 +49,27 @@
       </div>
     </div>
   </header>
+    <main>
+      <h2>Форма с таблицей</h2>
     
+      <div class="form-group">
+          <label for="name">Поиск:</label>
+          <input type="text" id="searchUsers" placeholder="Введите имя">
+      </div>
+      
+      <div class="form-group">
+          <label for="role">Роль:</label>
+          <select id="role" name="role">
+              <option onclick="loadUsers()">Преподаватель</option>
+              <option onclick="loadUsers()">Учащийся</option>
+          </select>
+      </div>
+      
+      <table>
+        <thead id="table-head"></thead>
+        <tbody id="table-body"></tbody>
+    </table>
+    </main>
 </body>
+<script src="./js/script.js"></script>
 </html>

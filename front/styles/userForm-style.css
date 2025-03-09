@@ -1,0 +1,484 @@
+/* Ссылки на шрифты */
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap");
+
+/* Основные переменные */
+
+:root {
+  --main-color: #7c4dff;
+  --secondary-color: #0099ff;
+  --white-color: #ffffff;
+  --bg-color: #ffffff;
+  --main-bg-color: #202542;
+  --font-color: #black;
+  --gradient: linear-gradient(
+    var(--secondary-color),
+    var(--main-color)
+  ); /* Линейный градиент фиолетовый-бирюзовый */
+}
+
+/* Общие стили: устанавливают общие свойства для всех элементов. */
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  cursor: default;
+}
+
+main {
+  background: var(--bg-color);
+}
+html,
+body {
+  background: var(--main-bg-color);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+/* Стилистика навбара: определяют внешний вид навигационного меню. */
+
+.main-content {
+  min-height: calc(100% - 100px);
+  padding-bottom: 0px;
+  box-sizing: border-box;
+}
+
+/* Стилизация навбара */
+.guide-image {
+  width: 425px;
+}
+
+/* Стилизация блока  */
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  color: var(--font-color);
+}
+
+/* Стили для Footer */
+footer {
+  background-color: var(--header-bg-color);
+  display: flex;
+  padding-top: 25px;
+  width: 65%;
+  height: 250px;
+  margin: auto;
+  font-size: 14px;
+  color: #c3c3c3;
+}
+
+footer h4 {
+  color: #ffffff;
+}
+
+/* Отступы между частями flex у Footer */
+.item {
+  flex: 1 1 auto;
+  margin: 0 5px;
+}
+
+/* Текст "STUDY-GUIDE" */
+.footer-info h4 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.footer-info hr {
+  border: 1px solid #7979799e;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  margin-inline-end: 195px;
+}
+
+/* Центральная часть футера */
+.footer-contact-info {
+  display: flex;
+}
+
+/* Настройки отступов и изображений */
+.footer-imgs {
+  margin-top: 5px;
+}
+
+.footer-imgs img {
+  display: block;
+  width: 32px;
+  margin-top: 28px;
+  margin-right: 10px;
+}
+
+/* Настройки текста */
+.footer-contact-info-text {
+  display: block;
+  line-height: 58px;
+}
+
+/* Настройки текста "Контакты" */
+.footer-contact-info h4 {
+  margin-left: -22px;
+  font-size: 17px;
+  line-height: normal;
+  margin-bottom: 16px;
+}
+
+/* Текст "Беларусь Минск" */
+.location {
+  line-height: normal;
+  margin-bottom: 10px;
+}
+
+/* Правая часть футера */
+.about-site {
+  display: block;
+  width: 20%;
+  text-align: left;
+}
+
+.about-site h4 {
+  font-size: 17px;
+  line-height: normal;
+  margin-bottom: 16px;
+}
+
+/* Стили для логотипа и названия сайта */
+.logo-container {
+  margin-left: 110px;
+  display: flex;
+  align-items: center;
+}
+
+.test-icon {
+  width: 50px;
+  margin-right: 10px;
+}
+
+.website-name {
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.logo-container a {
+  display: flex;
+  align-items: center;
+}
+
+/* Стили для кнопок */
+.header-button-list {
+  margin-right: 110px;
+  margin-top: 10px;
+}
+.header-button-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-left: 62px;
+}
+.header-button-list li a {
+  color: var(--white-color);
+  text-decoration: none;
+  font-size: 21px;
+  position: relative; /* Позволяет позиционировать вертикальную полосу */
+  padding-left: 15px;
+}
+.header-button-list li a::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  width: 4px;
+  height: 40px;
+  background-color: transparent; /* Цвет по умолчанию */
+}
+/* Цвета кнопок в шапке */
+.header-button-list li:nth-child(1) a::before {
+  background-color: #db4130;
+}
+.header-button-list li:nth-child(2) a::before {
+  background-color: #188ddb;
+}
+.header-button-list li:nth-child(3) a::before {
+  background-color: #d3d61c;
+}
+
+/* Кастомный скролл */
+
+html::-webkit-scrollbar {
+  width: 0.27rem;
+}
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+html::-webkit-scrollbar-thumb {
+  background: #fff;
+  border-radius: 10rem;
+}
+
+.navbar-button1:hover {
+  color: #ff5757;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+.navbar-button2:hover {
+  color: #4ba1fe;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+.navbar-button3:hover {
+  color: #f6ff46;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.profile {
+  background-image: url(../img/profile.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: none;
+  width: 38px;
+  height: 38px;
+  margin-right: 80px;
+}
+.profile:hover {
+  cursor: pointer;
+}
+.header-icons {
+  display: flex;
+}
+/* Форма по центру */
+#authContainer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+/* Анимация для фона */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Форма */
+#authForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  opacity: 0;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+/* Анимация появления */
+#authContainer.show #authForm {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+/* Анимация закрытия */
+#authContainer.hide {
+  animation: fadeOut 0.3s ease-in-out;
+}
+#authForm input {
+  width: 80%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+#authForm input:hover {
+  cursor: auto;
+}
+
+/* Кнопка */
+#authForm button {
+  padding: 8px 15px;
+  border: none;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+#authForm button:hover {
+  background: #0056b3;
+}
+#closeBtn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.theme-switcher {
+  background-image: url(../img/theme-switcher.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%; /* Растянет фон на всю кнопку */
+  border: none;
+  width: 38px;
+  height: 38px;
+}
+.theme-switcher-drop {
+  position: relative;
+  display: inline-block;
+  margin-right: 110px;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #15182a;
+  border-radius: 10px;
+  min-width: 130px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  color: #f6f6f6;
+}
+
+.dropdown-content a:hover {
+  background-color: #4a5491;
+  border-radius: 10px;
+}
+.theme-switcher-drop:hover .dropdown-content {
+  display: block;
+}
+.theme-switcher-drop:hover .theme-switcher {
+  cursor: pointer;
+}
+.theme-switcher button:hover {
+  cursor: pointer;
+}
+
+#profile-icon {
+  position: relative;
+  display: inline-block;
+  margin-right: 40px;
+}
+
+#login-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #15182a;
+  border-radius: 10px;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Анимация появления */
+#login-dropdown-content a {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  color: #f6f6f6;
+}
+
+#login-dropdown-content a:hover {
+  background-color: #4a5491;
+  border-radius: 10px;
+}
+
+.navbar-button:hover {
+  color: var(--main-color);
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--main-bg-color);
+  padding: 20px 15px;
+}
+nav ul {
+  display: flex;
+  list-style: none;
+}
+nav ul li {
+  margin-left: 20px;
+}
+nav ul li:first-child {
+  margin-left: 0;
+}
+nav ul li a {
+  color: var(--white-color);
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 18px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+th {
+  background-color: #f4f4f4;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+
+tbody tr:hover {
+  background-color: #f0f0f0;
+}
+td:hover {
+  cursor: pointer;
+}
+.selected {
+  background-color: #d3d3d3 !important;
+}

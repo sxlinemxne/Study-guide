@@ -133,11 +133,11 @@ document
     }
   });
 
-  document
+document
   .getElementById("login-dropdown-content")
   .addEventListener("click", async function () {
-      const container = document.getElementById("login-dropdown-content");
-      container.style.display = "none";
+    const container = document.getElementById("login-dropdown-content");
+    container.style.display = "none";
   });
 document
   .getElementById("profile-icon")
@@ -167,12 +167,12 @@ document
 
       if (!response.ok) {
         console.error("Ошибка авторизации:", data.message);
-        alert(data.message); // Выведет ошибку, если неправильный пароль или email
+        alert(data.message);
         return;
       }
 
       console.log("Успешный вход", data);
-      localStorage.setItem("token", data.token); // Сохраняем токен
+      localStorage.setItem("token", data.token);
       closeForm();
     } catch (error) {
       console.error("Ошибка запроса:", error);
@@ -208,3 +208,122 @@ function endSession() {
   localStorage.removeItem("token");
   console.log("JWT удалён из localStorage");
 }
+
+document
+  .getElementById("table-body")
+  .addEventListener("click", function (event) {
+    let targetRow = event.target.closest("tr");
+    if (!targetRow) return;
+
+    // Убираем выделение у всех строк
+    document
+      .querySelectorAll("#table-body tr")
+      .forEach((row) => row.classList.remove("selected"));
+
+    // Выделяем только одну строку
+    targetRow.classList.add("selected");
+  });
+
+// Обработчик для смены роли
+const roleSelect = document.getElementById("role");
+roleSelect.addEventListener("change", () => {
+  const selectedRole = roleSelect.value;
+  loadUsers();  // Загружаем пользователей при смене роли
+});
+
+let users = [];  // Массив для хранения пользователей
+
+// Функция для загрузки пользователей
+async function loadUsers() {
+  try {
+    const role = document.getElementById("role").value;  // Получаем роль из селектора
+
+    let response = await fetch(
+      `http://localhost:5000/auth/users?role=${encodeURIComponent(role)}`
+    );
+    users = await response.json();  // Получаем данные от сервера
+
+    console.log("Полученные пользователи:", users);  // Логируем, что приходит от сервера
+    renderUsers(users, role);  // Отображаем пользователей
+  } catch (error) {
+    console.error("Ошибка загрузки пользователей:", error);
+  }
+}
+
+// Вызов функции для первичной загрузки пользователей
+loadUsers();
+
+// Обработчик для фильтрации пользователей по запросу
+document.getElementById("searchUsers").addEventListener("input", (event) => {
+  const searchText = event.target.value.toLowerCase();  // Текст для поиска
+  const filteredUsers = users.filter(user => 
+    (user.name && user.name.toLowerCase().includes(searchText)) || 
+    (user.email && user.email.toLowerCase().includes(searchText)) ||
+    (user.group && user.group.toLowerCase().includes(searchText))
+  );
+  renderUsers(filteredUsers, document.getElementById("role").value);  // Отображаем отфильтрованных пользователей
+});
+
+// Функция для рендеринга пользователей в таблице
+function renderUsers(userList, role) {
+  const tableHead = document.getElementById("table-head");
+  const tableBody = document.getElementById("table-body");
+
+  tableHead.innerHTML = "";  // Очищаем заголовок таблицы
+  tableBody.innerHTML = "";  // Очищаем содержимое таблицы
+
+  // Проверка, что userList — это массив
+  if (!Array.isArray(userList)) {
+    console.error("Ожидался массив, но получен:", typeof userList);
+    tableBody.innerHTML = "<tr><td colspan='5'>Ошибка загрузки данных.</td></tr>";
+    return;
+  }
+
+  if (userList.length === 0) {
+    tableBody.innerHTML = "<tr><td colspan='5'>Нет пользователей для отображения</td></tr>";
+    return;  // Если нет пользователей, показываем сообщение
+  }
+
+  let tableHeaders = "";
+  let tableRows = "";
+
+  if (role === "Преподаватель") {
+    tableHeaders = `
+      <tr>
+        <th>№</th>
+        <th>Имя</th>
+        <th>Email</th>
+      </tr>`;
+    
+    tableRows = userList.map((user, index) => `
+      <tr>
+        <td>${index + 1}</td>
+        <td>${user.name}</td>
+        <td>${user.email}</td>
+      </tr>`).join("");  // Соединяем строки в одну для повышения производительности
+
+  } else if (role === "Учащийся") {
+    tableHeaders = `
+      <tr>
+        <th>№</th>
+        <th>Имя</th>
+        <th>Группа</th>
+        <th>Email</th>
+        <th>Рейтинг</th>
+      </tr>`;
+    
+    tableRows = userList.map((user, index) => `
+      <tr>
+        <td>${index + 1}</td>
+        <td>${user.name}</td>
+        <td>${user.group || "Не указана"}</td>
+        <td>${user.email}</td>
+        <td>${user.rating || "Не оценен"}</td>
+      </tr>`).join(""); // Соединяем строки в одну для повышения производительности
+  }
+
+  // Вставляем собранные строки в таблицу
+  tableHead.innerHTML = tableHeaders;
+  tableBody.innerHTML = tableRows;
+}
+

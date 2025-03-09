@@ -3,8 +3,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User"); // Подключаем модель
 const router = express.Router();
-const pool = require("../db")
-// Авторизация (POST /auth)
+const pool = require("../db");
+
 router.post("/", async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -32,10 +32,11 @@ router.post("/", async (req, res) => {
     }
 });
 
-// Получение всех пользователей (GET /auth/users)
 router.get("/users", async (req, res) => {
     try {
-        const result = await pool.query("SELECT id, name, email, role FROM users"); // Без паролей
+        const {role} = req.query;
+        console.log(role);
+        const result = await pool.query("SELECT id, name, email FROM users WHERE role = $1", [role]); // Без паролей
         res.json(result.rows);
     } catch (error) {
         console.error(error);
@@ -43,10 +44,9 @@ router.get("/users", async (req, res) => {
     }
 });
 
-// Получение текущего пользователя (GET /auth/me)
 router.get("/me", async (req, res) => {
     try {
-        const token = req.headers.authorization?.split(" ")[1]; // Достаем токен
+        const token = req.headers.authorization?.split(" ")[1];
         if (!token) {
             return res.status(401).json({ message: "Нет токена, авторизация отклонена" });
         }
