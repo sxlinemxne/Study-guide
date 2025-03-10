@@ -69,6 +69,33 @@
         <thead id="table-head"></thead>
         <tbody id="table-body"></tbody>
     </table>
+    <!-- Модальное окно для редактирования пользователя -->
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>Редактирование пользователя</h2>
+        <form id="editUserForm">
+          <label for="editName">Имя:</label>
+          <input type="text" id="editName" name="name">
+          
+          <label for="editEmail">Email:</label>
+          <input type="email" id="editEmail" name="email">
+          
+          <!-- Поля для учащегося -->
+          <div id="groupField" class="user-specific-field">
+            <label for="editGroup">Группа:</label>
+            <input type="text" id="editGroup" name="group">
+          </div>
+    
+          <div id="ratingField" class="user-specific-field">
+            <label for="editRating">Рейтинг:</label>
+            <input type="number" id="editRating" name="rating">
+          </div>
+    
+          <button type="submit">Сохранить изменения</button>
+        </form>
+      </div>
+    </div>
     </main>
 </body>
 <script src="./js/script.js"></script>

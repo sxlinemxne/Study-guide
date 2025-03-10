@@ -6,23 +6,31 @@ document.addEventListener("DOMContentLoaded", function () {
   size = scriptTag.dataset.size;
   updateTheme(theme, selectedTheme);
 });
+
 var contentElement = document.getElementById("content-text");
 var asideElement = document.getElementById("aside-themes");
 var urlParams = new URLSearchParams(window.location.search);
 selectedTheme = urlParams.get("theme");
-function loadJSON(file, callback) {
-  var xobj = new XMLHttpRequest();
-  xobj.overrideMimeType("application/json");
-  xobj.open("GET", file, true);
-  xobj.onreadystatechange = function () {
-    if (xobj.readyState == 4 && xobj.status == "200") {
-      callback(JSON.parse(xobj.responseText));
-    }
-  };
-  xobj.send(null);
+
+async function loadJSONFromServer(filename, callback) {
+  try {
+    const response = await fetch('http://localhost:5000/file/downloadByName', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename })
+    });
+
+    if (!response.ok) throw new Error('Ошибка загрузки данных: ' + response.statusText);
+
+    const data = await response.json();
+    callback(data);
+  } catch (error) {
+    console.error('Ошибка при загрузке JSON с сервера:', error);
+  }
 }
+
 function updateTheme(theme, themeType) {
-  loadJSON(theme + "-themes.json", function (data) {
+  loadJSONFromServer(theme + "-themes.json", function (data) {
     contentElement.innerHTML = "";
     asideElement.innerHTML = "";
 
@@ -50,7 +58,9 @@ function updateTheme(theme, themeType) {
           themeDiv.appendChild(codeBlock);
         }
       });
+
       contentElement.appendChild(themeDiv);
+
       var asideResultDiv = document.createElement("div");
       var asideResultTitle = document.createElement("li");
       var asideResultLink = document.createElement("a");
@@ -64,61 +74,46 @@ function updateTheme(theme, themeType) {
     Prism.highlightAll();
   });
 }
+
 function prevTheme(s) {
-  if (+selectedTheme + 1 <= size) {
-    selectedTheme = +selectedTheme + 1;
-  }
-  const url = new URL(window.location);
-const params = new URLSearchParams(url.search);
-
-params.set('theme', selectedTheme);
-
-window.history.replaceState({}, '', `${url.pathname}?${params.toString()}`);
-
+  if (+selectedTheme + 1 <= size) selectedTheme = +selectedTheme + 1;
+  updateURLParams();
   updateTheme(s, selectedTheme);
   clearQuestions();
   fetchQuizData(selectedTheme);
 }
 
 function nextTheme(s) {
-  if (+selectedTheme - 1 >= 1) {
-    selectedTheme = +selectedTheme - 1;
-  }
-  const url = new URL(window.location);
-const params = new URLSearchParams(url.search);
-
-params.set('theme', selectedTheme);
-
-window.history.replaceState({}, '', `${url.pathname}?${params.toString()}`);
+  if (+selectedTheme - 1 >= 1) selectedTheme = +selectedTheme - 1;
+  updateURLParams();
   updateTheme(s, selectedTheme);
-
   fetchQuizData(selectedTheme);
-  clearQuestions()
+  clearQuestions();
+}
 
+function updateURLParams() {
+  const url = new URL(window.location);
+  const params = new URLSearchParams(url.search);
+  params.set('theme', selectedTheme);
+  window.history.replaceState({}, '', `${url.pathname}?${params.toString()}`);
 }
 
 function createQuestion(questionData, questionIndex, topicIndex) {
   const section = document.getElementById("test");
   section.style.visibility = "visible";
   const btn = document.getElementById("checkAnswers");
-      btn.style.visibility = "visible";
+  btn.style.visibility = "visible";
+
   const questionContainer = document.createElement("div");
   questionContainer.classList.add("question");
 
-
   const questionTitle = document.createElement("h3");
-  questionTitle.textContent = `${topicIndex}-${questionIndex + 1}. ${
-    questionData.question
-  }`;
+  questionTitle.textContent = `${topicIndex}-${questionIndex + 1}. ${questionData.question}`;
   questionContainer.appendChild(questionTitle);
-
 
   questionData.answers.forEach((answer, i) => {
     const label = document.createElement("label");
-    label.innerHTML = `
-      <input type="radio" name="topic-${topicIndex}-question-${questionIndex}" value="${i}">
-      ${answer}
-    `;
+    label.innerHTML = `<input type="radio" name="topic-${topicIndex}-question-${questionIndex}" value="${i}">${answer}`;
     questionContainer.appendChild(label);
     questionContainer.appendChild(document.createElement("br"));
   });
@@ -127,24 +122,26 @@ function createQuestion(questionData, questionIndex, topicIndex) {
 }
 
 function loadQuestions(quizData, selectedTheme) {
-  let a = false;
+  let foundQuestions = false;
+
   for (let topicIndex in quizData) {
-      const topicQuestions = quizData[topicIndex];
-      topicQuestions.forEach((question, questionIndex) => {
-        if (topicIndex == selectedTheme) {
+    const topicQuestions = quizData[topicIndex];
+    topicQuestions.forEach((question, questionIndex) => {
+      if (topicIndex == selectedTheme) {
         createQuestion(question, questionIndex, topicIndex);
-        a = true
-        }
-      });
-    if(!a)
-    {
-      const section = document.getElementById("test");
-      section.style.visibility = "hidden";
-      const btn = document.getElementById("checkAnswers");
-      btn.style.visibility = "hidden";
-    }
+        foundQuestions = true;
+      }
+    });
+  }
+
+  if (!foundQuestions) {
+    const section = document.getElementById("test");
+    section.style.visibility = "hidden";
+    const btn = document.getElementById("checkAnswers");
+    btn.style.visibility = "hidden";
   }
 }
+
 function checkAnswers(quizData) {
   let correctAnswersCount = 0;
   let totalQuestions = 0;
@@ -153,19 +150,14 @@ function checkAnswers(quizData) {
     if (topicIndex == selectedTheme) {
       const topicQuestions = quizData[topicIndex];
       topicQuestions.forEach((question, questionIndex) => {
-        const selectedOption = document.querySelector(
-          `input[name="topic-${topicIndex}-question-${questionIndex}"]:checked`
-        );
-
-        const options = document.querySelectorAll(
-          `input[name="topic-${topicIndex}-question-${questionIndex}"]`
-        );
+        const selectedOption = document.querySelector(`input[name="topic-${topicIndex}-question-${questionIndex}"]:checked`);
+        const options = document.querySelectorAll(`input[name="topic-${topicIndex}-question-${questionIndex}"]`);
 
         options.forEach((option) => {
           if (parseInt(option.value) === question.correct) {
-            option.parentElement.style.color = "green"; 
+            option.parentElement.style.color = "green";
           } else {
-            option.parentElement.style.color = ""; 
+            option.parentElement.style.color = "";
           }
         });
 
@@ -184,24 +176,28 @@ function checkAnswers(quizData) {
   }
 
   const resultDiv = document.getElementById("result");
-
   resultDiv.innerHTML = `Вы ответили правильно на ${correctAnswersCount} из ${totalQuestions} вопросов.`;
 }
 
 async function fetchQuizData(selectedTheme) {
   try {
-    console.log(theme + "-tests.json");
-    const response = await fetch(theme + "-tests.json");
+    const filename = theme + "-tests.json";
+    const response = await fetch('http://localhost:5000/file/downloadByName', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename })
+    });
+
+    if (!response.ok) throw new Error("Ошибка загрузки данных с сервера");
+
     const quizData = await response.json();
     loadQuestions(quizData, selectedTheme);
 
-    document
-      .getElementById("checkAnswers")
-      .addEventListener("click", function () {
-        checkAnswers(quizData);
-      });
+    document.getElementById("checkAnswers").addEventListener("click", function () {
+      checkAnswers(quizData);
+    });
   } catch (error) {
-    console.error("Ошибка загрузки JSON:", error);
+    console.error("Ошибка загрузки данных:", error);
   }
 }
 
@@ -209,11 +205,9 @@ window.onload = function () {
   fetchQuizData(selectedTheme);
 };
 
-
 function clearQuestions() {
   const section = document.getElementById("test");
   section.innerHTML = "";
   const res = document.getElementById("result");
   res.innerHTML = "";
 }
-

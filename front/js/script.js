@@ -187,7 +187,6 @@ async function checkUser() {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` }, // Отправляем токен
       });
-
       if (!response.ok) {
         console.error("Ошибка получения пользователей");
         return false;
@@ -250,10 +249,6 @@ async function loadUsers() {
   }
 }
 
-// Вызов функции для первичной загрузки пользователей
-loadUsers();
-
-// Обработчик для фильтрации пользователей по запросу
 document.getElementById("searchUsers").addEventListener("input", (event) => {
   const searchText = event.target.value.toLowerCase();  // Текст для поиска
   const filteredUsers = users.filter(user => 
@@ -264,25 +259,13 @@ document.getElementById("searchUsers").addEventListener("input", (event) => {
   renderUsers(filteredUsers, document.getElementById("role").value);  // Отображаем отфильтрованных пользователей
 });
 
-// Функция для рендеринга пользователей в таблице
+
 function renderUsers(userList, role) {
   const tableHead = document.getElementById("table-head");
   const tableBody = document.getElementById("table-body");
 
   tableHead.innerHTML = "";  // Очищаем заголовок таблицы
   tableBody.innerHTML = "";  // Очищаем содержимое таблицы
-
-  // Проверка, что userList — это массив
-  if (!Array.isArray(userList)) {
-    console.error("Ожидался массив, но получен:", typeof userList);
-    tableBody.innerHTML = "<tr><td colspan='5'>Ошибка загрузки данных.</td></tr>";
-    return;
-  }
-
-  if (userList.length === 0) {
-    tableBody.innerHTML = "<tr><td colspan='5'>Нет пользователей для отображения</td></tr>";
-    return;  // Если нет пользователей, показываем сообщение
-  }
 
   let tableHeaders = "";
   let tableRows = "";
@@ -296,7 +279,7 @@ function renderUsers(userList, role) {
       </tr>`;
     
     tableRows = userList.map((user, index) => `
-      <tr>
+      <tr data-user-id="${user.id}">
         <td>${index + 1}</td>
         <td>${user.name}</td>
         <td>${user.email}</td>
@@ -307,17 +290,17 @@ function renderUsers(userList, role) {
       <tr>
         <th>№</th>
         <th>Имя</th>
-        <th>Группа</th>
         <th>Email</th>
+        <th>Группа</th>
         <th>Рейтинг</th>
       </tr>`;
     
     tableRows = userList.map((user, index) => `
-      <tr>
+      <tr data-user-id="${user.id}">
         <td>${index + 1}</td>
         <td>${user.name}</td>
-        <td>${user.group || "Не указана"}</td>
         <td>${user.email}</td>
+        <td>${user.group || "Не указана"}</td>
         <td>${user.rating || "Не оценен"}</td>
       </tr>`).join(""); // Соединяем строки в одну для повышения производительности
   }
@@ -325,5 +308,136 @@ function renderUsers(userList, role) {
   // Вставляем собранные строки в таблицу
   tableHead.innerHTML = tableHeaders;
   tableBody.innerHTML = tableRows;
+
+  // Добавляем обработчик события для двойного клика по строкам таблицы
+  const rows = tableBody.querySelectorAll("tr");  // Находим все строки в таблице
+  rows.forEach(row => {
+    row.addEventListener("dblclick", (event) => {
+      const userId = event.currentTarget.getAttribute("data-user-id");
+      const userName = event.currentTarget.querySelector("td:nth-child(2)").textContent;
+      const userEmail = event.currentTarget.querySelector("td:nth-child(3)").textContent;
+      const userGroup = event.currentTarget.querySelector("td:nth-child(4)") ? event.currentTarget.querySelector("td:nth-child(4)").textContent : "";
+      const userRating = event.currentTarget.querySelector("td:nth-child(5)") ? event.currentTarget.querySelector("td:nth-child(5)").textContent : "";
+
+      // Логирование для проверки
+      console.log(`Двойной клик по пользователю: ${userName} (${userEmail}) с ID: ${userId}`);
+
+      // Открытие модального окна и передача данных в поля формы
+      openEditModal(userId, userName, userEmail, userGroup, userRating, role);
+    });
+  });
 }
 
+// Открытие модального окна и заполнение данных
+function openEditModal(userId, userName, userEmail, userGroup, userRating, role) {
+  // Заполняем поля формы
+  document.getElementById("editName").value = userName;
+  document.getElementById("editEmail").value = userEmail;
+  document.getElementById("editGroup").value = userGroup;
+  document.getElementById("editRating").value = userRating;
+
+  // В зависимости от роли скрываем или показываем дополнительные поля
+  const groupField = document.getElementById("groupField");
+  const ratingField = document.getElementById("ratingField");
+
+  if (role === "Преподаватель") {
+    groupField.style.display = "none";
+    ratingField.style.display = "none";
+  } else if (role === "Учащийся") {
+    groupField.style.display = "block";
+    ratingField.style.display = "block";
+  }
+
+  // Показываем модальное окно
+  const modal = document.getElementById("editModal");
+  modal.style.display = "block";
+
+  // Обработчик закрытия модального окна
+  document.getElementById("closeModal").addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  // Обработчик отправки формы
+  document.getElementById("editUserForm").onsubmit = async function (e) {
+    e.preventDefault();
+  
+    const updatedUser = {
+      id: userId,
+      name: document.getElementById("editName").value,
+      email: document.getElementById("editEmail").value,
+      group: document.getElementById("editGroup").value,
+      rating: document.getElementById("editRating").value,
+      role: document.getElementById("role").value // Роль
+    };
+  
+    try {
+      // Отправляем обновленные данные на сервер
+      const response = await fetch(`http://localhost:5000/auth/users`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedUser),
+      });
+  
+      const result = await response.json();
+      if (response.ok) {
+        alert("Данные успешно обновлены!");
+        modal.style.display = "none";  // Закрываем модальное окно
+        loadUsers();  // Обновляем список пользователей
+      } else {
+        alert(result.error || "Ошибка при обновлении данных.");
+      }
+    } catch (error) {
+      console.error("Ошибка при отправке данных:", error);
+      alert("Ошибка при отправке данных.");
+    }
+  };  
+}
+
+
+async function uploadFiles() {
+  const filenames = [
+    "js-themes.json",
+    "js-tests.json",
+    "css-themes.json",
+    "css-tests.json",
+    "html-themes.json",
+    "html-tests.json"
+  ];
+
+  try {
+    const response = await fetch("http://localhost:5000/file/uploadByName", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ filenames })
+    });
+
+    const data = await response.json();
+    console.log(data); // Ответ от сервера
+
+  } catch (error) {
+    console.error("Ошибка при загрузке файлов:", error);
+  }
+}
+
+async function fetchFile() {
+  try {
+    // Отправляем запрос на сервер
+    const response = await fetch("http://localhost:5000/file");
+
+    // Проверяем успешность ответа
+    if (!response.ok) {
+      throw new Error("Ошибка при получении файла");
+    }
+
+    // Получаем файл из ответа
+    const fileData = await response.json();  // Поскольку сервер возвращает JSON, мы парсим его как JSON
+    console.log("Полученные данные файла:", fileData);
+
+  } catch (error) {
+    console.error("Ошибка:", error);
+  }
+}

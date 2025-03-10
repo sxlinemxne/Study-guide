@@ -71,4 +71,43 @@ router.get("/me", async (req, res) => {
     }
 });
 
+
+router.put('/users', async (req, res) => {
+    const { id, name, email, group, rating, role } = req.body;
+  
+    // Логируем для отладки
+    console.log("Получены данные для обновления:", req.body);
+  
+    // Проверяем, что id существует
+    if (!id) {
+      return res.status(400).json({ error: 'ID пользователя не передан' });
+    }
+  
+    let query = 'UPDATE users SET name = $1, email = $2, "group" = $3, rating = $4 WHERE id = $5';
+    const values = [name, email, group, rating, id];
+  
+    try {
+      // Логируем запрос для отладки
+      console.log("SQL запрос: ", query);
+      console.log("Параметры запроса: ", values);
+  
+      const result = await pool.query(query, values);
+  
+      // Проверяем результат обновления
+      if (result.rowCount > 0) {
+        console.log("Данные успешно обновлены");
+        res.status(200).json({ message: 'Данные успешно обновлены!' });
+      } else {
+        console.log("Пользователь не найден или нет изменений");
+        res.status(404).json({ error: 'Пользователь не найден или нет изменений' });
+      }
+    } catch (error) {
+      console.error('Ошибка при обновлении данных:', error);
+      res.status(500).json({ error: 'Ошибка при обновлении данных' });
+    }
+  });
+  
+  
+  
+
 module.exports = router;
