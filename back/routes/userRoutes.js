@@ -24,7 +24,6 @@ router.post("/", async (req, res) => {
         // 3. Создать JWT-токен
         const token = jwt.sign({ userId: user.id }, "secretKey", { expiresIn: "1d" });
 
-        console.log("Успешный вход");
         res.json({ user, token, message: "Успешный вход" });
     } catch (error) {
         console.error(error);
@@ -34,9 +33,8 @@ router.post("/", async (req, res) => {
 
 router.get("/users", async (req, res) => {
     try {
-        const {role} = req.query;
-        console.log(role);
-        const result = await pool.query("SELECT id, name, email FROM users WHERE role = $1", [role]); // Без паролей
+        const { role } = req.query;
+        const result = await pool.query("SELECT id, name, email FROM users WHERE role = $1", [role]);
         res.json(result.rows);
     } catch (error) {
         console.error(error);
@@ -71,43 +69,29 @@ router.get("/me", async (req, res) => {
     }
 });
 
+router.put("/users", async (req, res) => {
+    const { id, name, email, group, rating } = req.body;
 
-router.put('/users', async (req, res) => {
-    const { id, name, email, group, rating, role } = req.body;
-  
-    // Логируем для отладки
-    console.log("Получены данные для обновления:", req.body);
-  
     // Проверяем, что id существует
     if (!id) {
-      return res.status(400).json({ error: 'ID пользователя не передан' });
+        return res.status(400).json({ error: "ID пользователя не передан" });
     }
-  
-    let query = 'UPDATE users SET name = $1, email = $2, "group" = $3, rating = $4 WHERE id = $5';
+
+    const query = 'UPDATE users SET name = $1, email = $2, "group" = $3, rating = $4 WHERE id = $5';
     const values = [name, email, group, rating, id];
-  
+
     try {
-      // Логируем запрос для отладки
-      console.log("SQL запрос: ", query);
-      console.log("Параметры запроса: ", values);
-  
-      const result = await pool.query(query, values);
-  
-      // Проверяем результат обновления
-      if (result.rowCount > 0) {
-        console.log("Данные успешно обновлены");
-        res.status(200).json({ message: 'Данные успешно обновлены!' });
-      } else {
-        console.log("Пользователь не найден или нет изменений");
-        res.status(404).json({ error: 'Пользователь не найден или нет изменений' });
-      }
+        const result = await pool.query(query, values);
+
+        if (result.rowCount > 0) {
+            res.status(200).json({ message: "Данные успешно обновлены!" });
+        } else {
+            res.status(404).json({ error: "Пользователь не найден или нет изменений" });
+        }
     } catch (error) {
-      console.error('Ошибка при обновлении данных:', error);
-      res.status(500).json({ error: 'Ошибка при обновлении данных' });
+        console.error("Ошибка при обновлении данных:", error);
+        res.status(500).json({ error: "Ошибка при обновлении данных" });
     }
-  });
-  
-  
-  
+});
 
 module.exports = router;
