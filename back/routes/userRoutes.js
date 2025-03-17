@@ -4,25 +4,26 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User"); // Подключаем модель
 const router = express.Router();
 const pool = require("../db");
+const logAction = require("../utils/logger");
 
 router.post("/", async (req, res) => {
     try {
         const { email, password } = req.body;
-
-        // 1. Найти пользователя в БД
         const user = await User.findOne({ email });
+
         if (!user) {
             return res.status(400).json({ message: "Пользователь не найден" });
         }
 
-        // 2. Проверить пароль
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.status(400).json({ message: "Неверный пароль" });
         }
 
-        // 3. Создать JWT-токен
         const token = jwt.sign({ userId: user.id }, "secretKey", { expiresIn: "1d" });
+
+        // Записываем в лог
+        await logAction(user.id, "Вход в систему", `Пользователь ${user.email} вошел в систему`);
 
         res.json({ user, token, message: "Успешный вход" });
     } catch (error) {
@@ -34,7 +35,7 @@ router.post("/", async (req, res) => {
 router.get("/users", async (req, res) => {
     try {
         const { role } = req.query;
-        const result = await pool.query("SELECT id, name, email FROM users WHERE role = $1", [role]);
+        const result = await pool.query("SELECT * FROM users WHERE role = $1", [role]);
         res.json(result.rows);
     } catch (error) {
         console.error(error);
@@ -48,16 +49,11 @@ router.get("/me", async (req, res) => {
         if (!token) {
             return res.status(401).json({ message: "Нет токена, авторизация отклонена" });
         }
-
-        // Декодируем токен
         const decoded = jwt.verify(token, "secretKey");
-
-        // Ищем пользователя в базе
         const user = await pool.query(
-            "SELECT id, name, email, role FROM users WHERE id = $1",
+            `SELECT id, name, email, role, rating, "group" FROM users WHERE id = $1`,
             [decoded.userId]
         );
-
         if (user.rows.length === 0) {
             return res.status(404).json({ message: "Пользователь не найден" });
         }
@@ -72,7 +68,6 @@ router.get("/me", async (req, res) => {
 router.put("/users", async (req, res) => {
     const { id, name, email, group, rating } = req.body;
 
-    // Проверяем, что id существует
     if (!id) {
         return res.status(400).json({ error: "ID пользователя не передан" });
     }
@@ -91,6 +86,60 @@ router.put("/users", async (req, res) => {
     } catch (error) {
         console.error("Ошибка при обновлении данных:", error);
         res.status(500).json({ error: "Ошибка при обновлении данных" });
+    }
+});
+
+
+
+router.post("/users", async (req, res) => {
+    const { name, email, password, group, rating, role } = req.body;
+
+    if (!name || !email || !password) {
+        return res.status(400).json({ error: "Имя, Email и Пароль обязательны" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    try {
+        const result = await pool.query(
+            'INSERT INTO users (name, email, password, "group", rating, role) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+            [name, email, hashedPassword, group || null, rating || 0, role]
+        );
+
+        const newUser = result.rows[0];
+
+        // Записываем в лог
+        await logAction(newUser.id, "Регистрация", `Пользователь ${email} зарегистрирован`);
+
+        res.status(201).json({ message: "Пользователь добавлен!", user: newUser });
+    } catch (error) {
+        console.error("Ошибка при добавлении пользователя:", error);
+        res.status(500).json({ error: "Ошибка при добавлении пользователя" });
+    }
+});
+router.delete("/users", async (req, res) => { 
+    const { email } = req.body;
+
+    if (!email) {
+        return res.status(400).json({ error: "Email пользователя не передан" });
+    }
+
+    try {
+        const result = await pool.query("DELETE FROM users WHERE email = $1 RETURNING id", [email]);
+
+        if (result.rowCount > 0) {
+            const deletedUserId = result.rows[0].id;
+
+            // Записываем в лог
+            await logAction(deletedUserId, "Удаление пользователя", `Пользователь ${email} удален`);
+
+            res.status(200).json({ message: "Пользователь удален!" });
+        } else {
+            res.status(404).json({ error: "Пользователь не найден" });
+        }
+    } catch (error) {
+        console.error("Ошибка при удалении пользователя:", error);
+        res.status(500).json({ error: "Ошибка при удалении пользователя" });
     }
 });
 

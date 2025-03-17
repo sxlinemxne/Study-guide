@@ -1,6 +1,7 @@
 const express = require("express");
 const pool = require("../db");
 const router = express.Router();
+const logAction = require("../utils/logger");
 
 // Эндпоинт для поиска файла по имени в базе данных
 router.post('/downloadByName', async (req, res) => {
@@ -32,22 +33,19 @@ router.post('/downloadByName', async (req, res) => {
   }
 });
 
-// Эндпоинт для загрузки файлов в базу данных
 router.post('/uploadByName', async (req, res) => {
   try {
-    const { filenames } = req.body; // Ожидаем массив имен файлов
+    const { filenames, userId } = req.body; 
 
     if (!filenames || !Array.isArray(filenames)) {
       return res.status(400).json({ error: 'Не передан список файлов!' });
     }
 
-    // Обрабатываем каждый файл
     for (const filename of filenames) {
       if (!filename) {
         return res.status(400).json({ error: 'Имя файла не передано!' });
       }
 
-      // Ищем файл в базе данных по имени
       const result = await pool.query(
         'SELECT file_data FROM themes_files WHERE file_name = $1',
         [filename]
@@ -59,11 +57,13 @@ router.post('/uploadByName', async (req, res) => {
 
       const fileData = result.rows[0].file_data;
 
-      // Вставляем или обновляем файл в базе данных
       await pool.query(
         'INSERT INTO themes_files (file_name, file_data) VALUES ($1, $2) ON CONFLICT (file_name) DO UPDATE SET file_data = $2',
         [filename, fileData]
       );
+
+      // Записываем в лог
+      await logAction(userId, "Загрузка файла", `Файл ${filename} загружен в базу данных`);
     }
 
     res.json({ message: 'Файлы успешно загружены в БД!' });
@@ -72,5 +72,6 @@ router.post('/uploadByName', async (req, res) => {
     res.status(500).json({ error: 'Ошибка загрузки файлов', details: error.message });
   }
 });
+
 
 module.exports = router;

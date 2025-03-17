@@ -16,7 +16,11 @@ const leftElements = document.querySelectorAll(".left");
 const rightElements = document.querySelectorAll(".right");
 const subscribeFormElement = document.querySelectorAll(".subscribe-form");
 
-if (leftElements.length > 0 && rightElements.length > 0 && subscribeFormElement.length > 0) {
+if (
+  leftElements.length > 0 &&
+  rightElements.length > 0 &&
+  subscribeFormElement.length > 0
+) {
   window.sr = ScrollReveal({
     distance: "60px",
     duration: 800,
@@ -44,7 +48,8 @@ if (header && sidebar && footer) {
         const windowHeight = window.innerHeight;
 
         sidebar.style.top = headerHeight >= 0 ? headerHeight + "px" : "0px";
-        sidebar.style.bottom = footerTop < windowHeight ? windowHeight - footerTop + "px" : "0px";
+        sidebar.style.bottom =
+          footerTop < windowHeight ? windowHeight - footerTop + "px" : "0px";
 
         const content = document.querySelector(".nav-panel-content");
         content.style.position = "sticky";
@@ -91,57 +96,67 @@ function closeForm() {
   }, 300);
 }
 
-document.getElementById("authContainer").addEventListener("mousedown", function (event) {
-  if (event.target === this) {
-    closeForm();
-  }
-});
-
-document.getElementById("profile-icon").addEventListener("mouseover", async function () {
-  const isUserAuthenticated = await checkUser();
-  if (isUserAuthenticated) {
-    const container = document.getElementById("login-dropdown-content");
-    container.style.display = "block";
-  }
-});
-
-document.getElementById("login-dropdown-content").addEventListener("click", function () {
-  const container = document.getElementById("login-dropdown-content");
-  container.style.display = "none";
-});
-
-document.getElementById("profile-icon").addEventListener("mouseout", function (event) {
-  const container = document.getElementById("login-dropdown-content");
-  if (!container.contains(event.relatedTarget)) {
-    container.style.display = "none";
-  }
-});
-
-document.getElementById("loginForm").addEventListener("submit", async function (e) {
-  e.preventDefault();
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  try {
-    const response = await fetch("http://localhost:5000/auth", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      alert(data.message);
-      return;
+document
+  .getElementById("authContainer")
+  .addEventListener("mousedown", function (event) {
+    if (event.target === this) {
+      closeForm();
     }
+  });
 
-    localStorage.setItem("token", data.token);
-    closeForm();
-  } catch (error) {
-    alert("Ошибка при авторизации");
-  }
-});
+document
+  .getElementById("profile-icon")
+  .addEventListener("mouseover", async function () {
+    const isUserAuthenticated = await checkUser();
+    if (isUserAuthenticated) {
+      const container = document.getElementById("login-dropdown-content");
+      container.style.display = "block";
+    }
+  });
+
+document
+  .getElementById("login-dropdown-content")
+  .addEventListener("click", function () {
+    const container = document.getElementById("login-dropdown-content");
+    container.style.display = "none";
+  });
+
+document
+  .getElementById("profile-icon")
+  .addEventListener("mouseout", function (event) {
+    const container = document.getElementById("login-dropdown-content");
+    if (!container.contains(event.relatedTarget)) {
+      container.style.display = "none";
+    }
+  });
+
+document
+  .getElementById("loginForm")
+  .addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    try {
+      const response = await fetch("http://localhost:5000/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.message);
+        return;
+      }
+
+      localStorage.setItem("token", data.token);
+      closeForm();
+    } catch (error) {
+      alert("Ошибка при авторизации");
+    }
+  });
 
 async function checkUser() {
   try {
@@ -169,153 +184,56 @@ function endSession() {
   localStorage.removeItem("token");
 }
 
-document.getElementById("table-body").addEventListener("click", function (event) {
-  const targetRow = event.target.closest("tr");
-  if (!targetRow) return;
+document
+  .getElementById("table-body")
+  .addEventListener("click", function (event) {
+    const targetRow = event.target.closest("tr");
+    if (!targetRow) return;
 
-  document.querySelectorAll("#table-body tr").forEach((row) => row.classList.remove("selected"));
-  targetRow.classList.add("selected");
-});
-
-const roleSelect = document.getElementById("role");
-roleSelect.addEventListener("change", () => {
-  loadUsers();
-});
-
-let users = [];
-
-async function loadUsers() {
-  try {
-    const role = document.getElementById("role").value;
-    const response = await fetch(`http://localhost:5000/auth/users?role=${encodeURIComponent(role)}`);
-    users = await response.json();
-    renderUsers(users, role);
-  } catch (error) {
-    alert("Ошибка загрузки пользователей");
-  }
-}
-
-document.getElementById("searchUsers").addEventListener("input", (event) => {
-  const searchText = event.target.value.toLowerCase();
-  const filteredUsers = users.filter(user =>
-    (user.name && user.name.toLowerCase().includes(searchText)) ||
-    (user.email && user.email.toLowerCase().includes(searchText)) ||
-    (user.group && user.group.toLowerCase().includes(searchText))
-  );
-  renderUsers(filteredUsers, document.getElementById("role").value);
-});
-
-function renderUsers(userList, role) {
-  const tableHead = document.getElementById("table-head");
-  const tableBody = document.getElementById("table-body");
-
-  tableHead.innerHTML = "";
-  tableBody.innerHTML = "";
-
-  let tableHeaders = "";
-  let tableRows = "";
-
-  if (role === "Преподаватель") {
-    tableHeaders = `
-      <tr>
-        <th>№</th>
-        <th>Имя</th>
-        <th>Email</th>
-      </tr>`;
-    tableRows = userList.map((user, index) => `
-      <tr data-user-id="${user.id}">
-        <td>${index + 1}</td>
-        <td>${user.name}</td>
-        <td>${user.email}</td>
-      </tr>`).join("");
-  } else if (role === "Учащийся") {
-    tableHeaders = `
-      <tr>
-        <th>№</th>
-        <th>Имя</th>
-        <th>Email</th>
-        <th>Группа</th>
-        <th>Рейтинг</th>
-      </tr>`;
-    tableRows = userList.map((user, index) => `
-      <tr data-user-id="${user.id}">
-        <td>${index + 1}</td>
-        <td>${user.name}</td>
-        <td>${user.email}</td>
-        <td>${user.group || "Не указана"}</td>
-        <td>${user.rating || "Не оценен"}</td>
-      </tr>`).join("");
-  }
-
-  tableHead.innerHTML = tableHeaders;
-  tableBody.innerHTML = tableRows;
-
-  tableBody.querySelectorAll("tr").forEach(row => {
-    row.addEventListener("dblclick", (event) => {
-      const userId = event.currentTarget.getAttribute("data-user-id");
-      const userName = event.currentTarget.querySelector("td:nth-child(2)").textContent;
-      const userEmail = event.currentTarget.querySelector("td:nth-child(3)").textContent;
-      const userGroup = event.currentTarget.querySelector("td:nth-child(4)") ? event.currentTarget.querySelector("td:nth-child(4)").textContent : "";
-      const userRating = event.currentTarget.querySelector("td:nth-child(5)") ? event.currentTarget.querySelector("td:nth-child(5)").textContent : "";
-
-      openEditModal(userId, userName, userEmail, userGroup, userRating, role);
-    });
-  });
-}
-
-function openEditModal(userId, userName, userEmail, userGroup, userRating, role) {
-  document.getElementById("editName").value = userName;
-  document.getElementById("editEmail").value = userEmail;
-  document.getElementById("editGroup").value = userGroup;
-  document.getElementById("editRating").value = userRating;
-
-  const groupField = document.getElementById("groupField");
-  const ratingField = document.getElementById("ratingField");
-
-  if (role === "Преподаватель") {
-    groupField.style.display = "none";
-    ratingField.style.display = "none";
-  } else if (role === "Учащийся") {
-    groupField.style.display = "block";
-    ratingField.style.display = "block";
-  }
-
-  const modal = document.getElementById("editModal");
-  modal.style.display = "block";
-
-  document.getElementById("closeModal").addEventListener("click", () => {
-    modal.style.display = "none";
+    document
+      .querySelectorAll("#table-body tr")
+      .forEach((row) => row.classList.remove("selected"));
+    targetRow.classList.add("selected");
   });
 
-  document.getElementById("editUserForm").onsubmit = async function (e) {
-    e.preventDefault();
 
-    const updatedUser = {
-      id: userId,
-      name: document.getElementById("editName").value,
-      email: document.getElementById("editEmail").value,
-      group: document.getElementById("editGroup").value,
-      rating: document.getElementById("editRating").value,
-      role: document.getElementById("role").value
-    };
 
+  async function openProfile() {
+    document.getElementById("overlay").style.display = "flex";
     try {
-      const response = await fetch(`http://localhost:5000/auth/users`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedUser),
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:5000/auth/me", {
+        method: "GET",
+        headers: { Authorization: `Bearer ${token}` },
       });
-
-      const result = await response.json();
-      if (response.ok) {
-        alert("Данные успешно обновлены!");
-        modal.style.display = "none";
-        loadUsers();
+  
+      if (!response.ok) {
+        throw new Error("Не удалось загрузить профиль");
+      }
+  
+      const user = await response.json();
+      console.log(user);
+  
+      if (user.role === "Учащийся") {
+        document.getElementsByClassName("profile-info")[0].innerHTML = `
+          <p><span>Имя: </span>${user.name}</p>
+          <p><span>Email: </span>${user.email}</p>
+          <p><span>Группа: </span>${user.group}</p>
+          <p><span>Рейтинг: </span>${user.rating}</p>`;
       } else {
-        alert(result.error || "Ошибка при обновлении данных.");
+        document.getElementsByClassName("profile-info")[0].innerHTML = `
+          <p><span>Имя: </span>${user.name}</p>
+          <p><span>Email: </span>${user.email}</p>`;
       }
     } catch (error) {
-      alert("Ошибка при отправке данных.");
+      alert("Что-то пошло не так при загрузке профиля");
+      console.error(error);
     }
-  };
-}
+  }
+  
+  
+  
+  
+  function closeProfile() {
+    document.getElementById("overlay").style.display = "none";
+  }

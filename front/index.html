@@ -43,10 +43,9 @@
         <div id="profile-icon">
           <button class="profile" src="img/profile.svg" onclick="openForm()"></button>
           <div id="login-dropdown-content">
-            <a href="userForm.html">Личный кабинет</a>
+            <a href="#" onclick="openProfile()">Личный кабинет</a>
             <a href="userForm.html">Список учащихся</a>
-            <a href="#">Список тем</a>
-            <a href="#">Журнал аудита</a>
+            <a href="logForm.html">Журнал аудита</a>
             <a href="#" onclick="endSession()">Выйти из аккаунта</a>
           </div>
         </div>
@@ -63,6 +62,15 @@
         </form>
       </div>
     </div>
+    <div class="overlay" id="overlay">
+      <div class="profile-container">
+          <h2>Профиль пользователя</h2>
+          <div class="profile-info">
+              
+          </div>
+          <button onclick="closeProfile()">Закрыть</button>
+      </div>
+  </div>
   </header>
   <!-- Скрипты для работы функционала сайта -->
 

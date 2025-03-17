@@ -4,6 +4,8 @@ const cors = require("cors");
 const app = express();
 const userRoutes = require("./routes/userRoutes");
 const fileRoutes = require("./routes/fileRoutes");
+const logsRouter = require("./routes/logs");
+const testRoutes = require("./routes/tests");
 const pool = require("./db")
 app.use(cors());
 app.use(express.json());
@@ -11,6 +13,12 @@ app.use(express.json());
 // Подключение маршрутов
 app.use("/auth", userRoutes);
 app.use("/file", fileRoutes);
+app.use("/logs", logsRouter);
+app.use("/tests", testRoutes);
+
+
+
+
 
 // Запуск сервера
 const PORT = process.env.PORT || 5000;

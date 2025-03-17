@@ -177,7 +177,49 @@ function checkAnswers(quizData) {
 
   const resultDiv = document.getElementById("result");
   resultDiv.innerHTML = `Вы ответили правильно на ${correctAnswersCount} из ${totalQuestions} вопросов.`;
+
+  // Отправляем результат на сервер
+  sendTestResult(correctAnswersCount, totalQuestions);
 }
+
+function sendTestResult(correctAnswers, totalQuestions) {
+  const token = localStorage.getItem("token");
+  const themeId = selectedTheme;
+
+  if (!token) {
+    console.error("Не найден токен пользователя.");
+    return;
+  }
+
+  // Определяем subject из названия файла (например, "css-tests.json" -> "css")
+  const subject = theme; 
+
+  fetch('http://localhost:5000/tests/submitTest', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      token,
+      themeId,
+      correctAnswers,
+      totalQuestions,
+      subject
+    }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.message) {
+      console.log(data.message);
+    } else {
+      console.error("Ошибка при отправке результата:", data.error);
+    }
+  })
+  .catch(error => {
+    console.error("Ошибка при отправке запроса:", error);
+  });
+}
+
 
 async function fetchQuizData(selectedTheme) {
   try {
@@ -193,9 +235,9 @@ async function fetchQuizData(selectedTheme) {
     const quizData = await response.json();
     loadQuestions(quizData, selectedTheme);
 
-    document.getElementById("checkAnswers").addEventListener("click", function () {
+    document.getElementById("checkAnswers").onclick = function () {
       checkAnswers(quizData);
-    });
+    };
   } catch (error) {
     console.error("Ошибка загрузки данных:", error);
   }

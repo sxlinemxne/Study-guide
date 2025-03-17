@@ -54,9 +54,9 @@ body {
 /* Стилизация блока  */
 .container {
   width: 80%;
-  margin: 0 auto; 
-  padding: 20px; 
-  box-sizing: border-box; 
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
   color: var(--font-color);
 }
 
@@ -215,7 +215,7 @@ footer h4 {
 
 .test-icon {
   width: 50px;
-  margin-right: 10px; 
+  margin-right: 10px;
 }
 
 .website-name {
@@ -238,7 +238,7 @@ footer h4 {
 .header-button-list li {
   display: flex;
   align-items: center;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
   margin-left: 62px;
 }
 .header-button-list li a {
@@ -246,15 +246,15 @@ footer h4 {
   text-decoration: none;
   font-size: 21px;
   position: relative; /* Позволяет позиционировать вертикальную полосу */
-  padding-left: 15px; 
+  padding-left: 15px;
 }
 .header-button-list li a::before {
   content: "";
   position: absolute;
-  top: 50%; 
+  top: 50%;
   transform: translateY(-50%);
   left: 0;
-  width: 4px; 
+  width: 4px;
   height: 40px;
   background-color: transparent; /* Цвет по умолчанию */
 }
@@ -263,10 +263,10 @@ footer h4 {
   background-color: #db4130;
 }
 .header-button-list li:nth-child(2) a::before {
-  background-color: #188ddb; 
+  background-color: #188ddb;
 }
 .header-button-list li:nth-child(3) a::before {
-  background-color: #d3d61c; 
+  background-color: #d3d61c;
 }
 
 /* Кастомный скролл */
@@ -325,13 +325,13 @@ html::-webkit-scrollbar-thumb {
   border-radius: 1.6rem;
   border-width: 2px;
   border-style: inset;
-  border-color:#9a9999;
+  border-color: #9a9999;
   border-image: initial;
   margin: auto;
 }
 
 /* Поле для ввода текста */
-.searching-bar input{
+.searching-bar input {
   background-color: rgba(0, 0, 0, 0);
   width: 85%;
   height: 90%;
@@ -364,11 +364,11 @@ html::-webkit-scrollbar-thumb {
 .searching-bar:not(:focus-within) {
   transition-duration: 0.2s;
   border-style: inset;
-  border-color:#9a9999;
+  border-color: #9a9999;
   border-image: initial;
 }
 .searching-bar input:hover {
-  cursor:auto;
+  cursor: auto;
 }
 
 .HTML-title {
@@ -448,14 +448,16 @@ html::-webkit-scrollbar-thumb {
 .main-button-container-JS:hover {
   background-color: #dbde3d;
 }
-.main-button-container-HTML, a:hover {
-  cursor: pointer;
-
-}
-.main-button-container-CSS, a:hover {
+.main-button-container-HTML,
+a:hover {
   cursor: pointer;
 }
-.main-button-container-JS, a:hover {
+.main-button-container-CSS,
+a:hover {
+  cursor: pointer;
+}
+.main-button-container-JS,
+a:hover {
   cursor: pointer;
 }
 
@@ -560,9 +562,7 @@ html::-webkit-scrollbar-thumb {
   margin-bottom: 10px;
 }
 
-
-.profile
-{
+.profile {
   background-image: url(../img/profile.svg);
   background-color: transparent;
   background-repeat: no-repeat;
@@ -572,10 +572,9 @@ html::-webkit-scrollbar-thumb {
   width: 38px;
   height: 38px;
   margin-right: 80px;
-
 }
 .profile:hover {
-cursor: pointer;
+  cursor: pointer;
 }
 .header-icons {
   display: flex;
@@ -596,19 +595,19 @@ cursor: pointer;
 /* Анимация для фона */
 @keyframes fadeIn {
   from {
-      opacity: 0;
+    opacity: 0;
   }
   to {
-      opacity: 1;
+    opacity: 1;
   }
 }
 
 @keyframes fadeOut {
   from {
-      opacity: 1;
+    opacity: 1;
   }
   to {
-      opacity: 0;
+    opacity: 0;
   }
 }
 
@@ -652,7 +651,7 @@ cursor: pointer;
   border-radius: 5px;
 }
 #authForm input:hover {
-  cursor:auto;
+  cursor: auto;
 }
 
 /* Кнопка */
@@ -670,10 +669,10 @@ cursor: pointer;
   background: #0056b3;
 }
 #closeBtn {
-  position: absolute; 
-  top: 5px; 
-  right: 10px; 
-  font-size: 20px; 
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 20px;
   cursor: pointer;
 }
 
@@ -686,7 +685,6 @@ cursor: pointer;
   border: none;
   width: 38px;
   height: 38px;
-  
 }
 .theme-switcher-drop {
   position: relative;
@@ -709,8 +707,6 @@ cursor: pointer;
   color: #f6f6f6;
 }
 
-
-
 .dropdown-content a:hover {
   background-color: #4a5491;
   border-radius: 10px;
@@ -724,7 +720,6 @@ cursor: pointer;
 .theme-switcher button:hover {
   cursor: pointer;
 }
-
 
 #profile-icon {
   position: relative;
@@ -759,4 +754,38 @@ cursor: pointer;
   color: var(--main-color);
   transition: color 0.3s ease;
   cursor: pointer;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  justify-content: center;
+  align-items: center;
+  z-index: 100000;
+}
+.profile-container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  text-align: center;
+}
+.profile-container h2 {
+  margin-bottom: 10px;
+}
+.profile-info {
+  text-align: left;
+}
+.profile-info p {
+  margin: 5px 0;
+}
+.profile-info span {
+  font-weight: bold;
 }

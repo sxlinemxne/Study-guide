@@ -63,6 +63,8 @@
               <option onclick="loadUsers()">Преподаватель</option>
               <option onclick="loadUsers()">Учащийся</option>
           </select>
+          <button class="button add-btn" onclick="openModal()">Добавить пользователя</button>
+          
       </div>
       
       <table>
@@ -93,10 +95,26 @@
           </div>
     
           <button type="submit">Сохранить изменения</button>
+          <button class="button delete-btn" onclick="deleteUser()">Удалить</button>
         </form>
       </div>
     </div>
+
+    <div id="modal2" class="modal2">
+      <div class="modal-content">
+          <h3>Добавить пользователя</h3>
+          <input type="text" id="usName" placeholder="Имя">
+          <input type="email" id="usEmail" placeholder="Email">
+          <input type="password" id="usPassword" placeholder="Пароль">
+          <input type="text" id="usGroup" placeholder="Группа">
+          <input type="number" id="usRating" placeholder="Рейтинг">
+          <br>
+          <button class="button add-btn" onclick="addUser()">Добавить</button>
+          <button class="button close-btn" onclick="closeModal()">Закрыть</button>
+      </div>
+  </div>
     </main>
 </body>
 <script src="./js/script.js"></script>
+<script src="./js/loadUsers.js"></script>
 </html>
